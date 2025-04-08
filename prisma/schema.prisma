@@ -1,0 +1,52 @@
+generator Aluno {
+  provider = "prisma-aluno-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Aluno {
+  id Int @id @default(autoincrement())
+  cpf String? @db.VarChar(20) @unique
+  nome String
+  telefones Telefone[]
+  matriculas Matricula[]
+}
+
+model Telefone {
+  id Int @id @default(autoincrement())
+  alunoId Int
+  numero String @db.VarChar(20)
+  tipo String @db.VarChar(20)
+  aluno Aluno @relation(fields: [alunoId], references: [id])
+}
+
+model Matricula {
+  id Int @id @default(autoincrement())
+  alunoId Int
+  createdAt DateTime @default(now())
+  aluno Aluno @relation(fields: [alunoId], references: [id])
+}
+
+model Disciplina {
+  id Int @id @default(autoincrement())
+  nome String
+  professores Professor[] @relation("ProfessorDisciplina")
+  turmas Turma[]
+}
+
+model Turma {
+  id Int @id @default(autoincrement())
+  nome String
+  createdAt DateTime @default(now())
+  disciplinaId Int
+  disciplinaid Disciplina @relation(fields: [disciplinaId], references: [id])
+}
+
+model Professor {
+  id Int @id @default(autoincrement())
+  nome String
+  disciplinas Disciplina[] @relation("ProfessorDisciplina")
+}
