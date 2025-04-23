@@ -20,3 +20,14 @@
 - [ ] Para cada requisio funcional deve ser desenhado um DCU (Diagrama de Casos de Uso).
 - [ ] Iniciar o desenvolvimento do projeto, criando as pastas e arquivos iniciais (README.md, .gitignore, etc).
 - [ ] Desenvolver um protótipo funcional do App com Figma
+
+
+## Passo a passo para testar
+- 1 Clone este repositório
+- 2 Abra o repositório com o VsCode, Abra um terminal **CTRL + '** cmd ou bash
+- 3 Abra o XAMPP e inicie o SGBD **MySQL**, ou inicie o MySQL da forma que preferir.
+- 4 Crie dentro da pasta ./api um arquivo chamado **.env** contendo as seguintes variáveis de ambiente:
+```js
+DATABASE_URL="mysql://root@localhost:3306/escola?schema=public&timezone=UTC"
+```
+- 5 No terminal do VsCode navegue até a pasta **./api** e execute os seguintes comandos para instalar o banco de dados, semear os dados de teste e executar a API na porta 3000.
