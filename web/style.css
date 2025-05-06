@@ -1,116 +1,182 @@
-body{
-  font-family: Arial, Helvetica, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+  scroll-behavior: smooth;
+}
+
+/* Cabeçalho */
+header {
+  background-color: black;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header a.informações {
+  color: white;
+  text-decoration: none;
+  background-color: white;
+  color: black;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+header a.informações:hover {
+  background-color: red;
+  color: white;
+}
+
+/* Seção principal */
+section {
+  width: 100%;
+}
+
+/* Capa */
+section:first-of-type {
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+section:first-of-type h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: red;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: red;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border-radius: 5px;
+  position: absolute;
+  top: 550px;
+  right: 1700px;
+
+}
+
+.button:hover {
+  background-color: darkred;
+}
+
+/* Sobre */
+section:nth-of-type(2) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: red;
+  padding: 60px 10%;
+  color: white;
+}
+
+section:nth-of-type(2) h2 {
+  font-size: 1.8rem;
+}
+
+section:nth-of-type(2) img {
+  width: auto;
+  height: 200px;
+  border-radius: 5px;
+}
+
+/* Benefícios */
+section:nth-of-type(3) {
+  background-color: black;
+  padding: 60px 0;
+  text-align: center;
+}
+
+section:nth-of-type(3) h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+section:nth-of-type(3) .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.grid div {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+/* Parcerias */
+section:nth-of-type(4) {
+  background-color: black;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+section:nth-of-type(4) h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+section:nth-of-type(4) p {
+  margin: 10px 0;
+}
+
+/* Criadores */
+section:nth-of-type(5) {
+  background-color: red;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+section:nth-of-type(5) h2 {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+section:nth-of-type(5) .criadores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+section:nth-of-type(5) .criadores div {
+  background-color: black;
+  color: white;
+  width: 100px;
+  height: 100px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  overflow-x:hidden;
- }
- 
- div{
-  background-color: rgba(181, 253, 255, 0);
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  padding: 50px;
-  border-radius: 15px;
-  color: rgb(0, 0, 0);
- }
-
- input{
-  padding: 10px;
-  border: 20px;
-  outline: 15px;
-  font-size: 20px;
- }
-
- info {
-  border-radius: 16px;
-  background-color: rgb(255, 67, 67);
+  font-size: 0.8rem;
+  border-radius: 5px;
 }
 
- 
- .button{
-  background-color: rgb(207, 47, 47);
-      border: black;
-      color: #ec1c1c;
-      padding: 12px 26px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 120px;
-      animation: pulse 2s infinite;
-      width: 10%;
-      height: 50px;
-     margin-top: 200px
-    }
-
-    fieldset{
-      border-radius: 26%;
-      width: 80px;
-      height: 160px;
-      transform: translate(100% 50%);
-      margin-top: 400px;
-      margin-right: 1555px;
-    }
- 
-.button:hover{
-  background-color: rgb(255, 135, 135);
- }
-
-  .container{
-  width: 51%;
-  height: 200px;
-  transform: translate(50%, 50%);
-  padding: 5px;
-  margin: 20px;
-  background: rgb(0, 0, 0);
-  border-radius: 20%;
-  }
-  
-  
-
-.button:hover{
-  background-color: rgb(255, 135, 135);
- }
-
-info{
-  transform: translate(100%, 150%);
-  margin-top: 50%;
+/* Rodapé */
+footer {
+  background-color: red;
+  color: white;
+  text-align: right;
+  padding: 20px 30px;
+  font-size: 0.9rem;
 }
- 
-.botao:hover {
-  animation: none;
-}
-
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  .botao:hover {
-      animation: none;
-  }
-
-  .informações{
-      background:rgb(255, 255, 255);
-      border-radius: 30px;
-      padding: 5px 10px;
-      transform: translate(1950%, 50%);
-  }
-
-  fieldset{
-      border-radius: 20px;
-      width: 20%;
-      height: 110px;
-      color:white;
-  }
