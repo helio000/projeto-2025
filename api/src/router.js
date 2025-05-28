@@ -2,15 +2,15 @@ const express = require('express');
 const routes = express.Router();
 
 const Aluno = require('./controllers/aluno');
-//const Professor = require('./controllers/professor');
+const Professores = require('./controllers/professores');
 const Telefone = require('./controllers/telefone');
 //const Turma = require('./controllers/turma');
 const Matricula = require('./controllers/matricula');
 
-routes.get('/', (req, res) => {
-  return res.json({ titulo: 'Escola Superior PW' });
-});
 
+routes.get('/', (req, res) => {
+  return res.json({ titulo: 'TCC do helio' });
+});
 
 routes.post('/alunos', Aluno.create);
 routes.get('/alunos', Aluno.read);
@@ -18,13 +18,11 @@ routes.get('/alunos/:ra', Aluno.readOne);
 routes.put('/alunos/:ra', Aluno.update);
 routes.delete('/alunos/:ra', Aluno.remove);
 
-/*
-routes.post('/professores', Professor.create);
-routes.get('/professores', Professor.read);
-routes.get('/professores/:id', Professor.readOne);
-routes.put('/professores/:id', Professor.update);
-routes.delete('/professores/:id', Professor.remove);
-*/
+routes.post('/professores', Professores.create);
+routes.get('/professores', Professores.read);
+routes.get('/professores/:id', Professores.readOne);
+routes.put('/professores/:id', Professores.update);
+routes.delete('/professores/:id', Professores.remove);
 
 routes.post('/telefone', Telefone.create);
 routes.get('/telefone', Telefone.read);
