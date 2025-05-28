@@ -4,7 +4,7 @@ const routes = express.Router();
 const Aluno = require('./controllers/aluno');
 const Professores = require('./controllers/professores');
 const Telefone = require('./controllers/telefone');
-//const Turma = require('./controllers/turma');
+const Turma = require('./controllers/turma');
 const Matricula = require('./controllers/matricula');
 
 
@@ -29,13 +29,13 @@ routes.get('/telefone', Telefone.read);
 routes.get('/telefone/:id', Telefone.readOne);
 routes.put('/telefone/:id', Telefone.update);
 routes.delete('/telefone/:id', Telefone.remove);
-/*
+
 routes.post('/turmas', Turma.create);
 routes.get('/turmas', Turma.read);
 routes.get('/turmas/:id', Turma.readOne);
 routes.put('/turmas/:id', Turma.update);
 routes.delete('/turmas/:id', Turma.remove);
-*/
+
 
 routes.post('/matricula', Matricula.create);
 routes.get('/matricula', Matricula.read);
