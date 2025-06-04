@@ -7,7 +7,6 @@
 |-|-|
 |Hélio|Back/Teste|
 |João Santos|Front|
-|Luiza|Back/Banco|
 |Rhayssa|Front|
 
 ## BackLog
