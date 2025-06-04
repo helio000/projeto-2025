@@ -1,74 +1,55 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const Turma = require('../controllers/turma');
 
 const create = async (req, res) => {
     try {
-        const turma = await prisma.turma.create({
-            data: {
-                nome: req.body.nome,
-                professor: {
-                    connect: { id: req.body.professorID }
-                }
-            }
-        });
-        return res.status(201).json(turma);
+        const turma = new Turma(req.body);
+        await turma.save();
+        res.status(201).json(turma);
     } catch (error) {
-        return res.status(400).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
 };
 
 const read = async (req, res) => {
-    const turmas = await prisma.turma.findMany({
-        include: {
-            professor: true
-        }
-    });
-    return res.json(turmas);
+    try {
+        const turmas = await Turma.find();
+        res.status(200).json(turmas);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 };
 
 const readOne = async (req, res) => {
-    const turma = await prisma.turma.findUnique({
-        where: {
-            id: Number(req.params.id)
-        },
-        include: {
-            professor: true
-        }
-    });
-    return res.json(turma);
+    const { id } = req.params;
+    try {
+        const turma = await Turma.findById(id);
+        if (!turma) return res.status(404).json({ error: 'Turma não encontrada' });
+        res.status(200).json(turma);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 };
 
 const update = async (req, res) => {
+    const { id } = req.params;
     try {
-        const turma = await prisma.turma.update({
-            where: {
-                id: Number(req.params.id)
-            },
-            data: req.body
-        });
-        return res.status(202).json(turma);
+        const turma = await Turma.findByIdAndUpdate(id, req.body, { new: true });
+        if (!turma) return res.status(404).json({ error: 'Turma não encontrada' });
+        res.status(200).json(turma);
     } catch (error) {
-        return res.status(400).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
 };
 
 const remove = async (req, res) => {
+    const { id } = req.params;
     try {
-        await prisma.turma.delete({
-            where: {
-                id: Number(req.params.id)
-            }
-        });
-        return res.status(204).send();
+        const turma = await Turma.findByIdAndDelete(id);
+        if (!turma) return res.status(404).json({ error: 'Turma não encontrada' });
+        res.status(200).json({ message: 'Turma removida com sucesso' });
     } catch (error) {
-        return res.status(404).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
 };
 
-module.exports = {
-    create,
-    read,
-    readOne,
-    update,
-    remove
-};
+module.exports = { create, read, readOne, update, remove };
