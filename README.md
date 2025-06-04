@@ -17,7 +17,7 @@
 - [x] Desenvolver o diagrama de classes inicial
 - [ ] Listar os requisitos funcionais na ordem [RF001], [RF002], [RF003], ... e os requisitos não funcionais na ordem [NF001], [NF002], [NF003], ... (não é necessário detalhar os requisitos, apenas listar)
 - [x] Para cada requisio funcional deve ser desenhado um DCU (Diagrama de Casos de Uso).
-- [ ] Iniciar o desenvolvimento do projeto, criando as pastas e arquivos iniciais (README.md, .gitignore, etc).
+- [x] Iniciar o desenvolvimento do projeto, criando as pastas e arquivos iniciais (README.md, .gitignore, etc).
 - [ ] Desenvolver um protótipo funcional do App com Figma
 
 
