@@ -1,68 +1,59 @@
-body{
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.formulário button {
-    margin-right: 50px;
-}
-
-.butao{
-   width: 16px;
-   transform: translate(360px, 0%);
-}
-
-.formulário {
-    display: flex;
-    margin-left: 230px;
-    margin-top: 10px;
-    height: 44px;
-    width: 40%;
-    transform: translate(360px, 0%);
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
 }
 
 .Cadastro {
     text-align: center;
-    color: #ec2e2e;
-    font-size: 57px;
+    font-size: 24px;
+    margin-top: 20px;
 }
 
-label{
-    color:#ec2e2e;
-    font-size: 140%;
-}
-
-input{
-    border-color: #ec2e2e;
+.box-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-button{
-    border-color: #ec2e2e;
-    border-radius: 10px;
-    background-color:#ec2e2e;
-    display: flex;
-    margin-left: 230px;
-    margin-top: 10px;
-    height: 122%;
-    width: 80px;
-    font-size: 140%;
+.input-group {
+    margin-bottom: 15px;
 }
 
-select{
-    border-color: #ec2e2e;
-    border-radius: 10px;
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    overflow-x:hidden;
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
 }
- 
 
-textarea {
-    border-radius: 20px;
-    border-color: #ec2e2e;
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border: 2px solid red;
+}
+
+.enviar-button {
+    width: 100%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.enviar-button:hover {
+    background-color: darkred;
 }

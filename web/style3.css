@@ -32,11 +32,11 @@
   }
   
   .info{
-    background-color: rgb(250, 64, 64);
-    border: 30px;
+    background-color: red;
+    border: none;
     padding: 16px;
     width: 8%;
-    border-radius: 20px;
+    border-radius: 5px;
     border-color:rgb(207, 47, 47);
     color: rgb(0, 0, 0);
     font-size: 16px;
