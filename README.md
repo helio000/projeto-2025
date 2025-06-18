@@ -10,27 +10,17 @@
 |Rhayssa|Front/Banco de Dados|
 
 ## BackLog
-Próxima Sprint 3º
- - []UML DC (Diagrama de Classes) Back-End
-- [] Iniciar a codificação/desenvolvimento Banco de dados
- - []Iniciar a codificação/desenvolvimento Back-end
- - []Iniciar a codificação/desenvolvimento Front-end
-- [] Iniciar a codificação/desenvolvimento Mobile
-- [] UML DA (Diagrama de Atividades) Front-End
-- [] Análise de Viabilidade com Matriz SWOT
-- []Triângulo da qualidade do Projeto (Escopo, Prazo e Custo)
+- [x] Criar/atualizar o cronograma
+- [x] Modelar o negócio no Quadro Canvas
+- [x] Criar o repositório do projeto no GitHub e adicionar os menbros como colaboradores (Tudo que for desenvolvido deve estar neste repositório, podendo ter mais de um repositório, mas o principal deve ser este e possuir link para os outros)
+- [x] Desenvolver o MER x DER Inicial
+- [x] Desenvolver o diagrama de classes inicial
+- [ ] Listar os requisitos funcionais na ordem [RF001], [RF002], [RF003], ... e os requisitos não funcionais na ordem [NF001], [NF002], [NF003], ... (não é necessário detalhar os requisitos, apenas listar)
+- [x] Para cada requisio funcional deve ser desenhado um DCU (Diagrama de Casos de Uso).
+- [x] Iniciar o desenvolvimento do projeto, criando as pastas e arquivos iniciais (README.md, .gitignore, etc).
+- [x] Desenvolver um protótipo funcional do App com Figma
 
 
-- [x]Modelar o negócio no Canvas
- - [x]Criar um cronograma Gráfico Gant
- - [x]Criar um repositório no github e adicionar os integrantes do grupo como colaboradores.
- - []Protótipo funcional inicial (Com Figma - Mobile e Web))
- - [x]Web
- - []Mobile
- - []Elencar os requisitos funcionais como neste exemplo.
- - [x]Ilustrar cada requisito funciional com DCU (Diagrama de casos de Uso)
- - [x]Modelar o banco de dados MER x DER
- - [x]Cadastrar os integrantes do grupo nas ferramentas de gestão de projeto escolhida Trello, Jira, Asana, etc.
 ## Passo a passo para testar
 - 1 Clone este repositório
 - 2 Abra o repositório com o VsCode, Abra um terminal **CTRL + '** cmd ou bash
