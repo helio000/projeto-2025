@@ -20,7 +20,7 @@
 - [x] Iniciar o desenvolvimento do projeto, criando as pastas e arquivos iniciais (README.md, .gitignore, etc).
 - [x] Desenvolver um protótipo funcional do App com Figma
 
-## Próxima Sprint 3º
+## Sprint 3º
 - [x] UML DC (Diagrama de Classes) Back-End
  - [x] Iniciar a codificação/desenvolvimento Banco de dados
  - [x] Iniciar a codificação/desenvolvimento Back-end
@@ -29,6 +29,7 @@
  - [x] UML DA (Diagrama de Atividades) Front-End
  - [x] Análise de Viabilidade com Matriz SWOT
  - [x] Triângulo da qualidade do Projeto (Escopo, Prazo e Custo)
+ - [x] Protótipo (Wireframe) do Front-end e Mobile
 ## Passo a passo para testar
 - 1 Clone este repositório
 - 2 Abra o repositório com o VsCode, Abra um terminal **CTRL + '** cmd ou bash
