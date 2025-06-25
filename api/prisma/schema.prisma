@@ -8,32 +8,40 @@ datasource db {
 }
 
 model Aluno {
-  id Int @id @default(autoincrement())
-  nome String @db.VarChar(100)
-  email String? @db.VarChar(100)
-  telefones Telefone[]
+  id         Int         @id @default(autoincrement())
+  nome       String      @db.VarChar(100)
+  email      String?     @db.VarChar(100)
+  telefones  Telefone[]
   matriculas Matricula[]
 }
 
 model Telefone {
-  id Int @id @default(autoincrement())
-  alunoID Int?
+  id          Int        @id @default(autoincrement())
+  alunoID     Int?
   professorID Int?
-  numero String @db.VarChar(10)
-  tipo String @db.VarChar(100)
-  aluno Aluno? @relation(fields: [alunoID], references: [id])
-  professor Professor? @relation(fields: [professorID], references: [id])
+  numero      String     @db.VarChar(10)
+  tipo        String     @db.VarChar(100)
+  aluno       Aluno?     @relation(fields: [alunoID], references: [id])
+  professor   Professor? @relation(fields: [professorID], references: [id])
 }
 
 model Matricula {
-  id Int @id @default(autoincrement())
-  alunoID Int
-  data DateTime @default(now())
-  aluno Aluno @relation(fields: [alunoID], references: [id])
+  id       Int      @id @default(autoincrement())
+  alunoID  Int
+  data     DateTime @default(now())
+  aluno    Aluno    @relation(fields: [alunoID], references: [id])
 }
 
 model Professor {
-  id Int @id @default(autoincrement())
-  nome String @db.VarChar(100)
+  id        Int        @id @default(autoincrement())
+  nome      String     @db.VarChar(100)
   telefones Telefone[]
+  turmas    Turma[]    
+}
+
+model Turma {
+  id          Int       @id @default(autoincrement())
+  nome        String    @db.VarChar(100)
+  professorID Int
+  professor   Professor @relation(fields: [professorID], references: [id])
 }

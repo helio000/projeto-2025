@@ -5,23 +5,41 @@
 
 |Recursos|Papéis e Responsabilidades|
 |-|-|
-|Hélio|Back/Teste|
-|João Santos|Front|
-|Luiza|Back/Banco|
-|Rhayssa|Front|
+|Hélio|Back/Teste/Banco de dados|
+|João Santos|Front/Banco de Dados|
+|Rhayssa|Front/Banco de Dados|
 
 ## BackLog
-- [ ] Criar/atualizar o cronograma
-- [ ] Modelar o negócio no Quadro Canvas
-- [ ] Criar o repositório do projeto no GitHub e adicionar os menbros como colaboradores (Tudo que for desenvolvido deve estar neste repositório, podendo ter mais de um repositório, mas o principal deve ser este e possuir link para os outros)
-- [ ] Desenvolver o MER x DER Inicial
-- [ ] Desenvolver o diagrama de classes inicial
-- [ ] Listar os requisitos funcionais na ordem [RF001], [RF002], [RF003], ... e os requisitos não funcionais na ordem [NF001], [NF002], [NF003], ... (não é necessário detalhar os requisitos, apenas listar)
-- [ ] Para cada requisio funcional deve ser desenhado um DCU (Diagrama de Casos de Uso).
-- [ ] Iniciar o desenvolvimento do projeto, criando as pastas e arquivos iniciais (README.md, .gitignore, etc).
-- [ ] Desenvolver um protótipo funcional do App com Figma
+- [x] Criar/atualizar o cronograma
+- [x] Modelar o negócio no Quadro Canvas
+- [x] Criar o repositório do projeto no GitHub e adicionar os menbros como colaboradores (Tudo que for desenvolvido deve estar neste repositório, podendo ter mais de um repositório, mas o principal deve ser este e possuir link para os outros)
+- [x] Desenvolver o MER x DER Inicial
+- [x] Desenvolver o diagrama de classes inicial
+- [x] Listar os requisitos funcionais na ordem [RF001], [RF002], [RF003], ... e os requisitos não funcionais na ordem [NF001], [NF002], [NF003], ... (não é necessário detalhar os requisitos, apenas listar)
+- [x] Para cada requisio funcional deve ser desenhado um DCU (Diagrama de Casos de Uso).
+- [x] Iniciar o desenvolvimento do projeto, criando as pastas e arquivos iniciais (README.md, .gitignore, etc).
+- [x] Desenvolver um protótipo funcional do App com Figma
 
+## Sprint 3º
+- [x] UML DC (Diagrama de Classes) Back-End
+ - [x] Iniciar a codificação/desenvolvimento Banco de dados
+ - [x] Iniciar a codificação/desenvolvimento Back-end
+ - [x] Iniciar a codificação/desenvolvimento Front-end
+- [x] Iniciar a codificação/desenvolvimento Mobile
+ - [x] UML DA (Diagrama de Atividades) Front-End
+ - [x] Análise de Viabilidade com Matriz SWOT
+ - [x] Triângulo da qualidade do Projeto (Escopo, Prazo e Custo)
+ - [x] Protótipo (Wireframe) do Front-end e Mobile
+## Diagramas do Projeto
 
+### 📘 Diagrama de Classes (Back-End)
+![UML DC](web/imagem/UML-DC-(Diagrama-de-Classes)-Back-End.png)
+
+### 📗 DCU do Projeto
+![DCU](web/imagem/DCU-do-projeto.jpeg)
+
+### 📙 Diagrama Geral do Projeto
+![Diagrama Geral](web/imagem/diagrama-do-projeto.jpeg)
 ## Passo a passo para testar
 - 1 Clone este repositório
 - 2 Abra o repositório com o VsCode, Abra um terminal **CTRL + '** cmd ou bash
@@ -31,3 +49,9 @@
 DATABASE_URL="mysql://root@localhost:3306/escola?schema=public&timezone=UTC"
 ```
 - 5 No terminal do VsCode navegue até a pasta **./api** e execute os seguintes comandos para instalar o banco de dados, semear os dados de teste e executar a API na porta 3000.
+
+
+## FIGMA
+``` js
+https://www.figma.com/proto/HxZNNVrxK09InRPlHsikVi/Untitled?node-id=4-253&p=f&t=LN7T599ltLNHvpSE-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=4%3A251
+```

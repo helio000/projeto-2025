@@ -1,71 +1,55 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const Professor = require('../controllers/professores');
 
 const create = async (req, res) => {
     try {
-        const professor = await prisma.professor.create({
-            data: {
-                nome: req.body.nome,
-              
-                telefone: {
-                    connect: { id: req.body.telefoneID }
-                }
-            }
-        });
-        return res.status(201).json(professor);
+        const professor = new Professor(req.body);
+        await professor.save();
+        res.status(201).json(professor);
     } catch (error) {
-        return res.status(400).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
-}
+};
 
 const read = async (req, res) => {
-    const professores = await prisma.professor.findMany();
-    return res.json(professores);
-}
+    try {
+        const professores = await Professor.find();
+        res.status(200).json(professores);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
 
 const readOne = async (req, res) => {
-    const professor = await prisma.professor.findUnique({
-        where: {
-            id: Number(req.params.id)
-        },
-        include: {
-            telefone: true
-        }
-    });
-    return res.json(professor);
+    const { id } = req.params;
+    try {
+        const professor = await Professor.findById(id);
+        if (!professor) return res.status(404).json({ error: 'Professor não encontrado' });
+        res.status(200).json(professor);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 };
 
 const update = async (req, res) => {
+    const { id } = req.params;
     try {
-        const professor = await prisma.professor.update({
-            where: {
-                id: Number(req.params.id)
-            },
-            data: req.body
-        });
-        return res.status(202).json(professor);
+        const professor = await Professor.findByIdAndUpdate(id, req.body, { new: true });
+        if (!professor) return res.status(404).json({ error: 'Professor não encontrado' });
+        res.status(200).json(professor);
     } catch (error) {
-        return res.status(400).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
-}
+};
 
 const remove = async (req, res) => {
+    const { id } = req.params;
     try {
-        const professor = await prisma.professor.delete({
-            where: {
-                id: Number(req.params.id)
-            }
-        });
-        return res.status(204).send();
+        const professor = await Professor.findByIdAndDelete(id);
+        if (!professor) return res.status(404).json({ error: 'Professor não encontrado' });
+        res.status(200).json({ message: 'Professor removido com sucesso' });
     } catch (error) {
-        return res.status(404).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
-}
+};
 
-module.exports = {
-    create,
-    read,
-    readOne,
-    update,
-    remove
-}
+module.exports = { create, read, readOne, update, remove };

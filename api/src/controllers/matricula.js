@@ -1,70 +1,55 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const Matricula = require('../controllers/matricula');
 
 const create = async (req, res) => {
     try {
-        const matricula = await prisma.matricula.create({
-            data: {
-                aluno: {
-                    connect: { id: req.body.alunoID}
-                }
-            }
-        });
-        return res.status(201).json(matricula);
+        const matricula = new Matricula(req.body);
+        await matricula.save();
+        res.status(201).json(matricula);
     } catch (error) {
-        return res.status(400).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
-}
-
+};
 
 const read = async (req, res) => {
-    const matriculas = await prisma.matricula.findMany();
-    return res.json(matriculas);
-}
+    try {
+        const matriculas = await Matricula.find();
+        res.status(200).json(matriculas);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
 
 const readOne = async (req, res) => {
-    const matricula = await prisma.matricula.findUnique({
-        where: {
-            id: Number(req.params.id)
-        },
-        include: {
-            aluno: true
-        }
-    });
-    return res.json(matricula);
+    const { id } = req.params;
+    try {
+        const matricula = await Matricula.findById(id);
+        if (!matricula) return res.status(404).json({ error: 'Matrícula não encontrada' });
+        res.status(200).json(matricula);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 };
 
 const update = async (req, res) => {
+    const { id } = req.params;
     try {
-        const matricula = await prisma.matricula.update({
-            where: {
-                id: Number(req.params.id)
-            },
-            data: req.body
-        });
-        return res.status(202).json(matricula);
+        const matricula = await Matricula.findByIdAndUpdate(id, req.body, { new: true });
+        if (!matricula) return res.status(404).json({ error: 'Matrícula não encontrada' });
+        res.status(200).json(matricula);
     } catch (error) {
-        return res.status(400).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
-}
+};
 
 const remove = async (req, res) => {
+    const { id } = req.params;
     try {
-        const matricula = await prisma.matricula.delete({
-            where: {
-                id: Number(req.params.id)
-            }
-        });
-        return res.status(204).send();
+        const matricula = await Matricula.findByIdAndDelete(id);
+        if (!matricula) return res.status(404).json({ error: 'Matrícula não encontrada' });
+        res.status(200).json({ message: 'Matrícula removida com sucesso' });
     } catch (error) {
-        return res.status(404).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
-}
+};
 
-module.exports = {
-    create,
-    read,
-    readOne,
-    update,
-    remove
-}
+module.exports = { create, read, readOne, update, remove };
