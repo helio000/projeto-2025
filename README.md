@@ -30,6 +30,18 @@
  - [x] Análise de Viabilidade com Matriz SWOT
  - [x] Triângulo da qualidade do Projeto (Escopo, Prazo e Custo)
  - [x] Protótipo (Wireframe) do Front-end e Mobile
+## Diagramas do Projeto
+
+### 📘 Diagrama de Classes (Back-End)
+![UML DC](web/"UML DC (Diagrama de Classes) Back-End.png")
+
+### 📗 DCU do Projeto
+![DCU](web/"DCU do projeto.jpeg")
+
+### 📙 Diagrama Geral do Projeto
+![Diagrama Geral](web/"diagrama do projeto.jpeg")
+
+
 ## Passo a passo para testar
 - 1 Clone este repositório
 - 2 Abra o repositório com o VsCode, Abra um terminal **CTRL + '** cmd ou bash
@@ -39,6 +51,7 @@
 DATABASE_URL="mysql://root@localhost:3306/escola?schema=public&timezone=UTC"
 ```
 - 5 No terminal do VsCode navegue até a pasta **./api** e execute os seguintes comandos para instalar o banco de dados, semear os dados de teste e executar a API na porta 3000.
+
 
 ## FIGMA
 ``` js
