@@ -33,15 +33,13 @@
 ## Diagramas do Projeto
 
 ### 📘 Diagrama de Classes (Back-End)
-![UML DC](web/"UML DC (Diagrama de Classes) Back-End.png")
+![UML DC](web/imagem/UML-DC-(Diagrama-de-Classes)-Back-End.png)
 
 ### 📗 DCU do Projeto
-![DCU](web/"DCU do projeto.jpeg")
+![DCU](web/imagem/DCU-do-projeto.jpeg)
 
 ### 📙 Diagrama Geral do Projeto
-![Diagrama Geral](web/"diagrama do projeto.jpeg")
-
-
+![Diagrama Geral](web/imagem/diagrama-do-projeto.jpeg)
 ## Passo a passo para testar
 - 1 Clone este repositório
 - 2 Abra o repositório com o VsCode, Abra um terminal **CTRL + '** cmd ou bash
