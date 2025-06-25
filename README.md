@@ -41,4 +41,6 @@ DATABASE_URL="mysql://root@localhost:3306/escola?schema=public&timezone=UTC"
 - 5 No terminal do VsCode navegue até a pasta **./api** e execute os seguintes comandos para instalar o banco de dados, semear os dados de teste e executar a API na porta 3000.
 
 ## FIGMA
+```
 https://www.figma.com/proto/HxZNNVrxK09InRPlHsikVi/Untitled?node-id=4-253&p=f&t=LN7T599ltLNHvpSE-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=4%3A251
+```
