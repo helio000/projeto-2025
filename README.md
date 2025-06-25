@@ -30,6 +30,7 @@
  - [x] Análise de Viabilidade com Matriz SWOT
  - [x] Triângulo da qualidade do Projeto (Escopo, Prazo e Custo)
  - [x] Protótipo (Wireframe) do Front-end e Mobile
+
 ## Diagramas do Projeto
 
 ### 📘 Diagrama de Classes (Back-End)
@@ -40,6 +41,7 @@
 
 ### 📙 Diagrama do Projeto
 ![Diagrama do Projeto](imagens/diagrama-do-projeto.jpeg)
+
 ## Passo a passo para testar
 - 1 Clone este repositório
 - 2 Abra o repositório com o VsCode, Abra um terminal **CTRL + '** cmd ou bash
@@ -47,11 +49,3 @@
 - 4 Crie dentro da pasta ./api um arquivo chamado **.env** contendo as seguintes variáveis de ambiente:
 ```js
 DATABASE_URL="mysql://root@localhost:3306/escola?schema=public&timezone=UTC"
-```
-- 5 No terminal do VsCode navegue até a pasta **./api** e execute os seguintes comandos para instalar o banco de dados, semear os dados de teste e executar a API na porta 3000.
-
-
-## FIGMA
-``` js
-https://www.figma.com/proto/HxZNNVrxK09InRPlHsikVi/Untitled?node-id=4-253&p=f&t=LN7T599ltLNHvpSE-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=4%3A251
-```
