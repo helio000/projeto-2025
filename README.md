@@ -34,13 +34,13 @@
 ## Diagramas do Projeto
 
 ### 📘 Diagrama de Classes (Back-End)
-<img src="imagens/UML-DC-(Diagrama-de-Classes)-Back-End.png" alt="UML DC" width="600"/>
+<img src="UML-DC-(Diagrama-de-Classes)-Back-End.png" alt="UML DC" width="600"/>
 
 ### 📗 DCU do Projeto
-<img src="imagens/DCU-do-projeto.jpeg" alt="DCU" width="600"/>
+<img src="DCU-do-projeto.jpeg" alt="DCU" width="600"/>
 
 ### 📙 Diagrama do Projeto
-<img src="imagens/diagrama-do-projeto.jpeg" alt="Diagrama do Projeto" width="600"/>
+<img src="diagrama-do-projeto.jpeg" alt="Diagrama do Projeto" width="600"/>
 
 ## Passo a passo para testar
 - 1 Clone este repositório
