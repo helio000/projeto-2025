@@ -34,7 +34,7 @@
 ## Diagramas do Projeto
 
 ## 📘 Diagrama de Classes (Back‑End)
-<img src="api/imagem/UML DC (Diagrama de Classes) Back-End.png" alt="UML DC Backend" width="400"/>
+<img src="api/imagem/UML DC (Diagrama de Classes) Back-End.png" alt="UML DC Backend" width="200"/>
 
 ## 📗 DCU do Projeto
 <img src="api/imagem/DCU.jpeg" alt="Diagrama DCU" width="600"/>
