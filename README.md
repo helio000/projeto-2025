@@ -22,30 +22,30 @@
 
 ## Sprint 3º
 - [x] UML DC (Diagrama de Classes) Back-End
-  - [x] Iniciar a codificação/desenvolvimento Banco de dados
-  - [x] Iniciar a codificação/desenvolvimento Back-end
-  - [x] Iniciar a codificação/desenvolvimento Front-end
+ - [x] Iniciar a codificação/desenvolvimento Banco de dados
+ - [x] Iniciar a codificação/desenvolvimento Back-end
+ - [x] Iniciar a codificação/desenvolvimento Front-end
 - [x] Iniciar a codificação/desenvolvimento Mobile
-  - [x] UML DA (Diagrama de Atividades) Front-End
-  - [x] Análise de Viabilidade com Matriz SWOT
-  - [x] Triângulo da qualidade do Projeto (Escopo, Prazo e Custo)
-  - [x] Protótipo (Wireframe) do Front-end e Mobile
+ - [x] UML DA (Diagrama de Atividades) Front-End
+ - [x] Análise de Viabilidade com Matriz SWOT
+ - [x] Triângulo da qualidade do Projeto (Escopo, Prazo e Custo)
+ - [x] Protótipo (Wireframe) do Front-end e Mobile
 
 ## Diagramas do Projeto
 
-### 📘 Diagrama de Classes (Back‑End)
+## 📘 Diagrama de Classes (Back‑End)
 <img src="api/imagem/UML DC (Diagrama de Classes) Back-End.png" alt="UML DC Backend" width="600"/>
 
-### 📗 DCU do Projeto
-<img src="api/imagem/dcu.jpeg" alt="Diagrama DCU" width="600"/>
+## 📗 DCU do Projeto
+<img src="api/imagem/DCU.jpeg" alt="Diagrama DCU" width="600"/>
 
-### 📙 Diagrama do Projeto
+## 📙 Diagrama do Projeto
 <img src="api/imagem/diagrama.jpeg" alt="Diagrama geral" width="600"/>
 
 ## Passo a passo para testar
-1. Clone este repositório
-2. Abra o repositório com o VsCode, Abra um terminal **CTRL + '** cmd ou bash
-3. Abra o XAMPP e inicie o SGBD **MySQL**, ou inicie o MySQL da forma que preferir.
-4. Crie dentro da pasta `./api` um arquivo chamado **.env** contendo as seguintes variáveis de ambiente:
+- 1 Clone este repositório
+- 2 Abra o repositório com o VsCode, Abra um terminal **CTRL + '** cmd ou bash
+- 3 Abra o XAMPP e inicie o SGBD **MySQL**, ou inicie o MySQL da forma que preferir.
+- 4 Crie dentro da pasta ./api um arquivo chamado **.env** contendo as seguintes variáveis de ambiente:
 ```js
 DATABASE_URL="mysql://root@localhost:3306/escola?schema=public&timezone=UTC"
