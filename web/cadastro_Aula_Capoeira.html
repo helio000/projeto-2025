@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <title>Cadastro</title>
+</head>
+<body style="background-image: url('fundoForm2.png'); background-size: cover; margin:0;">
+
+    <h5 class="Cadastro">Cadastro</h5>
+
+    <form id="formulario" class="box-form">
+        <div class="form">
+            <div class="input-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" placeholder="Nome Completo" required />
+            </div>
+
+            <div class="input-group">
+                <label for="datanasc">Data de Nascimento</label>
+                <input id="datanasc" type="date" required />
+            </div>
+
+            <div class="input-group">
+                <label for="e-mail">E-mail</label>
+                <input type="email" id="e-mail" placeholder="Ex: email@gmail.com" required />
+            </div>
+
+            <div class="input-group">
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" placeholder="Telefone" required />
+            </div>
+
+            <div class="input-group">
+                <label for="arte-marcial">Arte Marcial</label>
+                <select id="arte-marcial" required>
+                    <option value="">Selecione uma opção</option>
+                    <option value="capoeira">Capoeira</option>
+                    <option value="jiu-jitsu">Jiu-Jitsu</option>
+                    <option value="karate">Karatê</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <button type="submit" class="enviar-button">Enviar</button>
+            </div>
+        </div>
+    </form>
+
+    <h5 class="Cadastro">Alunos Cadastrados</h5>
+    <ul id="lista-alunos"></ul>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        async function criarAluno() {
+            const dados = {
+                nome: document.getElementById("nome").value,
+                email: document.getElementById("e-mail").value,
+                telefone: document.getElementById("telefone").value,
+                datanasc: document.getElementById("datanasc").value,
+                arteMarcial: document.getElementById("arte-marcial").value
+            };
+            try {
+                const resposta = await fetch("http://localhost:3100/alunos", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(dados)
+                });
+                const resultado = await resposta.json();
+                alert("Aluno cadastrado com sucesso!");
+                listarAlunos(); // Atualiza a lista após cadastrar
+                document.getElementById("formulario").reset();
+            } catch (erro) {
+                alert("Erro ao enviar dados: " + erro);
+            }
+        }
+
+        async function listarAlunos() {
+            try {
+                const resposta = await fetch("http://localhost:3100/alunos");
+                const alunos = await resposta.json();
+
+                const lista = document.getElementById("lista-alunos");
+                lista.innerHTML = ""; // Limpa a lista antes de atualizar
+
+                alunos.forEach(aluno => {
+                    const li = document.createElement("li");
+                    li.textContent = `${aluno.nome} - ${aluno.email} - ${aluno.telefone}`;
+                    lista.appendChild(li);
+                });
+            } catch (erro) {
+                console.log("Erro ao listar alunos:", erro);
+            }
+        }
+
+        const formAluno = document.getElementById("formulario");
+        if (formAluno) {
+            formAluno.addEventListener("submit", (e) => {
+                e.preventDefault();
+                criarAluno();
+            });
+        }
+
+        listarAlunos(); // Lista os alunos ao carregar a página
+
+    });
+    </script>
+
+</body>
+</html>
