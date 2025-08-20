@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>Sala de Alunos</title>
+</head>
+<body style="background-image: url('fundoInfo.png'); background-size: cover; margin:0;">
+
+    <h5 class="Informações">Sala de Alunos</h5>
+
+    <center>
+        <fieldset id="lista-sala" style="padding: 20px;"></fieldset>
+    </center>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const lista = document.getElementById("lista-sala");
+        let alunos = JSON.parse(localStorage.getItem("alunos")) || [];
+
+        function atualizarLista() {
+            lista.innerHTML = "";
+            if(alunos.length === 0){
+                const p = document.createElement("p");
+                p.textContent = "Nenhum aluno cadastrado.";
+                lista.appendChild(p);
+            } else {
+                alunos.forEach((aluno, index) => {
+                    const div = document.createElement("div");
+                    div.classList.add("aluno");
+
+                    div.innerHTML = `
+                        <p>Nome: ${aluno.nome}</p>
+                        <p>Email: ${aluno.email}</p>
+                        <p>Telefone: ${aluno.telefone}</p>
+                        <p>Arte Marcial: ${aluno.arteMarcial}</p>
+                        <p>Data de Nascimento: ${aluno.datanasc}</p>
+                        <button class="remover" data-index="${index}">Remover</button>
+                    `;
+
+                    lista.appendChild(div);
+                });
+
+                const botoes = document.querySelectorAll(".remover");
+                botoes.forEach(botao => {
+                    botao.addEventListener("click", (e) => {
+                        const i = e.target.getAttribute("data-index");
+                        alunos.splice(i, 1);
+                        localStorage.setItem("alunos", JSON.stringify(alunos));
+                        atualizarLista();
+                    });
+                });
+            }
+        }
+
+        atualizarLista();
+    });
+    </script>
+
+</body>
+</html>

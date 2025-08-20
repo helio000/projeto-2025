@@ -70,7 +70,7 @@
                 });
                 const resultado = await resposta.json();
                 alert("Aluno cadastrado com sucesso!");
-                listarAlunos(); // Atualiza a lista após cadastrar
+                listarAlunos();
                 document.getElementById("formulario").reset();
             } catch (erro) {
                 alert("Erro ao enviar dados: " + erro);
@@ -83,7 +83,7 @@
                 const alunos = await resposta.json();
 
                 const lista = document.getElementById("lista-alunos");
-                lista.innerHTML = ""; // Limpa a lista antes de atualizar
+                lista.innerHTML = "";
 
                 alunos.forEach(aluno => {
                     const li = document.createElement("li");
@@ -103,10 +103,12 @@
             });
         }
 
-        listarAlunos(); // Lista os alunos ao carregar a página
+        listarAlunos();
 
     });
     </script>
+
+    <script src="script3.js"></script>
 
 </body>
 </html>

@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 9c692f742def30a1c14114039ab6c06fa9132066
 body{
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 
 .Informações {
     text-align: center;
@@ -20,6 +15,7 @@ fieldset{
     width: 25%;
     border-radius: 20px;
 }
+
 .voltar{
     background-color: rgb(250, 64, 64);
     border: 30px;
@@ -31,12 +27,13 @@ fieldset{
     font-size: 20px;
     cursor: pointer;
     margin-top: 300px;
-   }
-   button:hover{
-    background-color: rgb(255, 135, 135);
-   }
+}
 
-   .cadastre-se{
+button:hover{
+    background-color: rgb(255, 135, 135);
+}
+
+.cadastre-se{
     background-color: rgb(250, 64, 64);
     border: 30px;
     padding: 20px;
@@ -47,7 +44,17 @@ fieldset{
     font-size: 20px;
     cursor: pointer;
     margin-top: 30px;
-   }
-   button:hover{
-    background-color: rgb(255, 135, 135);
-   }
+}
+
+.aluno {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.5);
+    text-align: left;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
