@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const dados = {
             nome: document.getElementById("nome").value.trim(),
-            datanasc: document.getElementById("datanasc").value, // precisa estar em YYYY-MM-DD
+            datanasc: document.getElementById("datanasc").value, 
             email: document.getElementById("e-mail").value.trim().toLowerCase(),
             telefone: document.getElementById("telefone").value.trim(),
             arteMarcial: document.getElementById("arte-marcial").value
@@ -29,6 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert("Erro ao cadastrar aluno: " + erro.error);
                 return;
             }
+
+            // Salva também no localStorage para exibir na sala
+            let alunos = JSON.parse(localStorage.getItem("alunos")) || [];
+            alunos.push(dados);
+            localStorage.setItem("alunos", JSON.stringify(alunos));
 
             alert("Aluno cadastrado com sucesso! Você será redirecionado para a sala em 5 segundos.");
             setTimeout(() => {
