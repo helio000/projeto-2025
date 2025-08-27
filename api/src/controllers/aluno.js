@@ -1,7 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-
 const create = async (req, res) => {
   try {
     const aluno = await prisma.aluno.create({
@@ -60,4 +59,29 @@ const remove = async (req, res) => {
   }
 };
 
-module.exports = { create, read, readOne, update, remove };
+const login = async (req, res) => {
+  const { nome, email } = req.body;
+
+  if (!nome || !email) {
+    return res.status(400).json({ error: "Nome e e-mail são obrigatórios" });
+  }
+
+  try {
+    const aluno = await prisma.aluno.findFirst({
+      where: {
+        nome: nome.trim(),
+        email: email.trim().toLowerCase(),
+      }
+    });
+
+    if (!aluno) {
+      return res.status(401).json({ error: "Nome ou e-mail incorretos" });
+    }
+
+    res.status(200).json({ message: "Login realizado com sucesso!", aluno });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { create, read, readOne, update, remove, login };

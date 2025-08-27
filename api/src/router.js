@@ -20,6 +20,9 @@ routes.put('/alunos/:id', Aluno.update);
 routes.patch('/alunos/:id', Aluno.update);
 routes.delete('/alunos/:id', Aluno.remove);
 
+// Rota de login do Aluno
+routes.post('/alunos/login', Aluno.login);
+
 // Rotas de Professores
 routes.post('/professores', Professores.create);
 routes.get('/professores', Professores.read);
