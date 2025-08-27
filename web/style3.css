@@ -18,7 +18,7 @@
   }
   
   body {
-    background-color: #1c1c1c; /* ou outra cor sólida para evitar repetição */
+    background-color: #1c1c1c; 
     background-image: url('fundoInfo.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -78,14 +78,58 @@
     transform: translate3d(-50%, -50%, 0);
     background-color: #000;
   }
-  @media(max-width: 500px) {
-    .slider {
-      top: 27vh;
-    }
-    .card {
-      height: 300px;
-    }
+ @media (max-width: 1024px) {
+  .card {
+    width: 85%;
+    min-height: 300px;
   }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .text {
+    font-size: 0.95rem;
+  }
+
+  .info {
+    width: auto;
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    top: 400px;
+    width: 90%;
+    min-height: 250px;
+  }
+
+  .title {
+    font-size: 10px;
+  }
+
+  .text {
+    font-size: 10px;
+  }
+
+  .info {
+    width: 80%;
+    max-width: 250px;
+    display: block;
+    margin: 15px auto;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  h3{
+    font-size: 12px;
+  }
+  h2{
+    font-size: 15px;
+  }
+}
   
   .card img {
     position: absolute;
@@ -115,3 +159,5 @@
     position: relative;
     display: inline-block;
   }
+
+  

@@ -58,3 +58,13 @@ button:hover{
     margin-right: auto;
     color: white;
 }
+@media (max-width: 600px) {
+.Informações {
+    text-align: center;
+    color: #ec2e2e;
+    font-size: 30px;
+}
+body {
+    height: 1000px;
+}
+}
