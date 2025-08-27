@@ -8,10 +8,9 @@ body {
   font-family: Arial, sans-serif;
   background-color: black;
   color: white;
-  scroll-behavior: smooth;
 }
 
-/* Cabeçalho */
+/*-- Cabeçalho --*/
 header {
   background-color: black;
   padding: 15px 30px;
@@ -23,164 +22,180 @@ header {
 }
 
 header a.informações {
-  color: white;
   text-decoration: none;
-  background-color: white;
+  background: white;
   color: black;
-  padding: 5px 15px;
+  padding: 8px 20px;
   border-radius: 20px;
   font-weight: bold;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
 header a.informações:hover {
-  background-color: red;
+  background: red;
   color: white;
 }
+/*--------------------------------*/
 
-/* Seção principal */
-section {
-  width: 100%;
-}
-
-/* Capa */
-section:first-of-type {
-  background-size: cover;
-  background-position: center;
-  color: white;
+/*--  Hero --*/
+.hero {
+  background: url("bnner.jpg") no-repeat center/cover;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 80px 20px;
+  padding: 20px;
 }
 
-section:first-of-type h1 {
+.hero h1 {
   font-size: 2.5rem;
-  margin-bottom: 20px;
   color: red;
+  margin-bottom: 20px;
+}
+
+.hero-logo {
+  background: url("logo.png") no-repeat center/cover;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
 }
 
 .button {
-  padding: 10px 20px;
+  padding: 12px 24px;
   font-size: 1rem;
   background-color: red;
   border: none;
   color: white;
   cursor: pointer;
-  transition: 0.3s ease;
-  border-radius: 5px;
-  position: absolute;
-  top: 550px;
-  right: 1700px;
-
+  border-radius: 8px;
+  transition: 0.3s;
 }
 
 .button:hover {
   background-color: darkred;
 }
+/*--------------------------------*/
 
-/* Sobre */
-section:nth-of-type(2) {
+/*--  Sobre --*/
+.sobre {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: red;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: red;
   padding: 60px 10%;
-  color: white;
+  align-items: center;
 }
 
-section:nth-of-type(2) h2 {
-  font-size: 1.8rem;
+.sobre div {
+  flex: 1 1 300px;
 }
 
-section:nth-of-type(2) img {
-  width: auto;
-  height: 200px;
+.sobre img {
+  max-width: 100%;
+  height: auto;
   border-radius: 5px;
 }
+/*--------------------------------*/
 
-/* Benefícios */
-section:nth-of-type(3) {
-  background-color: black;
-  padding: 60px 0;
+/*--  Benefícios --*/
+.beneficios {
+  background: black;
+  padding: 60px 20px;
   text-align: center;
 }
 
-section:nth-of-type(3) h2 {
-  font-size: 2rem;
+.beneficios h2 {
   margin-bottom: 30px;
 }
 
-section:nth-of-type(3) .grid {
+.beneficios .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 20px;
-  max-width: 600px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
 }
 
-.grid div {
-  background-color: red;
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
+.beneficios .grid div {
+  background: red;
+  padding: 20px;
+  border-radius: 5px;
 }
+/*--------------------------------*/
 
-/* Parcerias */
-section:nth-of-type(4) {
-  background-color: black;
+/*--  Parcerias --*/
+.parcerias {
+  background: black;
   padding: 60px 20px;
   text-align: center;
 }
 
-section:nth-of-type(4) h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
+.parcerias .logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;  
+  gap: 30px;
 }
 
-section:nth-of-type(4) p {
-  margin: 10px 0;
+.parcerias .logo {
+  width: 200px;      
+  height: 200px;     
+  background-size: contain;  
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-/* Criadores */
-section:nth-of-type(5) {
-  background-color: red;
-  color: white;
+.logo1 { background-image: url("logo_mar_art.png"); width: 200px; height: 200px; }
+.logo2 { background-image: url("mc_logo.png"); width: 200px; height: 120px; }
+.logo3 { background-image: url("ficlub_logo.png"); width: 250px; height: 180px; }
+/*--------------------------------*/
+
+/*--  Criadores --*/
+.criadores {
+  background: red;
   padding: 60px 20px;
   text-align: center;
 }
 
-section:nth-of-type(5) h2 {
-  font-size: 1.5rem;
-  margin-bottom: 30px;
-}
-
-section:nth-of-type(5) .criadores {
+.grid-criadores {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
 }
 
-section:nth-of-type(5) .criadores div {
-  background-color: black;
-  color: white;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
+.foto {
+  width: 200px;
+  height: 200px;
+  background-size: cover;
   border-radius: 5px;
+  background-position: center;
+   justify-content: center;
+  align-items: center;  
 }
 
-/* Rodapé */
+.foto1 { background-image: url("foto1.png"); }
+.foto2 { background-image: url("foto4.jpeg"); }
+.foto3 { background-image: url("foto3.jpg"); }
+/*--------------------------------*/
+
+/*--  Rodapé --*/
 footer {
-  background-color: red;
-  color: white;
-  text-align: right;
-  padding: 20px 30px;
+  background: red;
+  padding: 20px;
+  text-align: center;
   font-size: 0.9rem;
-<<<<<<< HEAD
 }
-=======
+/*--------------------------------*/
+
+/*-- Responsividade --*/
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .button { font-size: 0.9rem; padding: 10px 18px; }
+  .sobre { flex-direction: column; text-align: center; }
+   .grid-criadores {
+    flex-direction: row;   
+    justify-content: center;
+  }
 }
->>>>>>> 9c692f742def30a1c14114039ab6c06fa9132066

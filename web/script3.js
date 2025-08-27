@@ -5,34 +5,40 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
 
         const dados = {
-            nome: document.getElementById("nome").value,
-            datanasc: document.getElementById("datanasc").value,
-            email: document.getElementById("e-mail").value,
-            telefone: document.getElementById("telefone").value,
+            nome: document.getElementById("nome").value.trim(),
+            datanasc: document.getElementById("datanasc").value, // precisa estar em YYYY-MM-DD
+            email: document.getElementById("e-mail").value.trim().toLowerCase(),
+            telefone: document.getElementById("telefone").value.trim(),
             arteMarcial: document.getElementById("arte-marcial").value
         };
 
-        let alunos = JSON.parse(localStorage.getItem("alunos")) || [];
-        alunos.push(dados);
-        localStorage.setItem("alunos", JSON.stringify(alunos));
-
-        
-        alert("Você será redirecionado para a sala em 10 segundos.");
-
-        setTimeout(() => {
-            window.location.href = "sala.html";
-        }, 10000);
+        if (!dados.nome || !dados.datanasc || !dados.email || !dados.telefone || !dados.arteMarcial) {
+            alert("Preencha todos os campos!");
+            return;
+        }
 
         try {
-            await fetch("http://localhost:3100/alunos", {
+            const resposta = await fetch("http://localhost:3100/alunos", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(dados)
             });
+
+            if (!resposta.ok) {
+                const erro = await resposta.json();
+                alert("Erro ao cadastrar aluno: " + erro.error);
+                return;
+            }
+
+            alert("Aluno cadastrado com sucesso! Você será redirecionado para a sala em 5 segundos.");
+            setTimeout(() => {
+                window.location.href = "sala.html";
+            }, 5000);
+
+            form.reset();
         } catch (erro) {
             console.error("Erro ao enviar dados para o servidor:", erro);
+            alert("Erro na conexão com o servidor.");
         }
-
-        form.reset();
     });
 });

@@ -3,52 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style2.css">
 <title>Sala de Alunos</title>
 <style>
-    body { background: #222 url('fundoForm2.png') no-repeat center; background-size: cover; color: white; font-family: sans-serif; }
-    .aluno { background: rgba(0,0,0,0.5); margin:10px; padding:10px; border-radius:5px; }
-    button { margin-top:5px; cursor:pointer; }
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background-image: url('fundoInfo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Informações {
+    text-align: center;
+    font-size: 28px;
+    margin: 20px 0;
+    text-shadow: 1px 1px 5px black;
+}
+
+#filtros {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#filtros button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#filtros button:hover {
+    background-color: #218838;
+}
+
+#lista-sala {
+    width: 90%;
+    max-width: 800px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.aluno {
+    background-color: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.aluno p {
+    margin: 0;
+}
+
+.remover {
+    align-self: flex-start;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.remover:hover {
+    background-color: darkred;
+}
+
+@media (max-width: 600px) {
+    #lista-sala {
+        padding: 15px;
+    }
+
+    .Informações {
+        font-size: 22px;
+    }
+
+    #filtros {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
 </style>
 </head>
 <body>
 
-<h3>Sala de Alunos</h3>
-<button onclick="window.location.href='cadastro.html'">Voltar ao Cadastro</button>
-<div id="lista-sala"></div>
+<h5 class="Informações">Sala de Alunos</h5>
+
+<div id="filtros">
+    <button data-arte="">Todos</button>
+    <button data-arte="capoeira">Capoeira</button>
+    <button data-arte="jiu-jitsu">Jiu-Jitsu</button>
+    <button data-arte="karate">Karatê</button>
+</div>
+
+<fieldset id="lista-sala"></fieldset>
 
 <script>
-document.addEventListener('DOMContentLoaded', async () => {
-    const alunoLogado = JSON.parse(localStorage.getItem('alunoLogado'));
-    if(!alunoLogado) {
-        alert("Faça login primeiro!");
-        window.location.href='login.html';
-        return;
-    }
+document.addEventListener("DOMContentLoaded", () => {
+    const lista = document.getElementById("lista-sala");
+    const botoes = document.querySelectorAll("#filtros button");
+    let alunos = JSON.parse(localStorage.getItem("alunos")) || [];
 
-    async function carregarAlunos(){
-        try {
-            const res = await fetch('http://localhost:3100/alunos');
-            const alunos = await res.json();
-            const div = document.getElementById('lista-sala');
-            div.innerHTML = '';
-            alunos.forEach(a=>{
-                const bloco = document.createElement('div');
-                bloco.classList.add('aluno');
-                bloco.innerHTML = `<p>${a.nome} - ${a.email} - ${a.telefone}</p>
-                                   <button data-id="${a.id}">Remover</button>`;
-                bloco.querySelector('button').addEventListener('click', async ()=>{
-                    await fetch(`http://localhost:3100/alunos/${a.id}`, {method:'DELETE'});
-                    carregarAlunos();
-                });
-                div.appendChild(bloco);
+    function atualizarLista(filtro = "") {
+        lista.innerHTML = "";
+        const filtrados = filtro ? alunos.filter(a => a.arteMarcial === filtro) : alunos;
+
+        if(filtrados.length === 0){
+            const p = document.createElement("p");
+            p.textContent = "Nenhum aluno cadastrado.";
+            lista.appendChild(p);
+        } else {
+            filtrados.forEach((aluno, index) => {
+                const div = document.createElement("div");
+                div.classList.add("aluno");
+
+                div.innerHTML = `
+                    <p><strong>Nome:</strong> ${aluno.nome}</p>
+                    <p><strong>Email:</strong> ${aluno.email}</p>
+                    <p><strong>Telefone:</strong> ${aluno.telefone}</p>
+                    <p><strong>Arte Marcial:</strong> ${aluno.arteMarcial}</p>
+                    <p><strong>Data de Nascimento:</strong> ${aluno.datanasc}</p>
+                    <button class="remover" data-index="${index}">Remover</button>
+                `;
+                lista.appendChild(div);
             });
-        } catch(err){
-            document.getElementById('lista-sala').textContent = 'Erro ao carregar alunos';
+
+            const removerBotoes = document.querySelectorAll(".remover");
+            removerBotoes.forEach(botao => {
+                botao.addEventListener("click", (e) => {
+                    const i = e.target.getAttribute("data-index");
+                    alunos.splice(i, 1);
+                    localStorage.setItem("alunos", JSON.stringify(alunos));
+                    atualizarLista(filtro);
+                });
+            });
         }
     }
 
-    carregarAlunos();
+    botoes.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const arte = btn.getAttribute("data-arte");
+            atualizarLista(arte);
+        });
+    });
+
+    atualizarLista();
 });
 </script>
+
 </body>
 </html>

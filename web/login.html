@@ -32,26 +32,48 @@ document.getElementById("entrar").addEventListener("click", async () => {
     }
 
     try {
-        const response = await fetch('http://localhost:3100/alunos/login', {
+        // Tenta logar
+        let response = await fetch('http://localhost:3100/alunos/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nome, email })
         });
 
-        const data = await response.json();
+        let data = await response.json();
 
-        if (response.ok) {
-            // Salva o aluno logado no localStorage
-            localStorage.setItem("alunoLogado", JSON.stringify(data.aluno));
-            mensagem.textContent = data.message;
-            mensagem.style.color = "rgb(100, 255, 100)";
-            setTimeout(() => {
-                window.location.href = "sala.html";
-            }, 1500);
-        } else {
-            mensagem.textContent = data.error;
-            mensagem.style.color = "rgb(255, 100, 100)";
+        // Se não existir, cria automaticamente
+        if (!response.ok) {
+            const criarResponse = await fetch('http://localhost:3100/alunos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nome, email, telefone: '', datanasc: '', arteMarcial: '' })
+            });
+
+            const criarData = await criarResponse.json();
+
+            if (criarResponse.ok) {
+                localStorage.setItem("alunoLogado", JSON.stringify(criarData));
+                mensagem.textContent = "Aluno criado e logado com sucesso!";
+                mensagem.style.color = "rgb(100, 255, 100)";
+                setTimeout(() => {
+                    window.location.href = "sala.html";
+                }, 1500);
+                return;
+            } else {
+                mensagem.textContent = criarData.error || "Erro ao criar aluno.";
+                mensagem.style.color = "rgb(255, 100, 100)";
+                return;
+            }
         }
+
+        // Se já existir, loga normalmente
+        localStorage.setItem("alunoLogado", JSON.stringify(data.aluno));
+        mensagem.textContent = data.message;
+        mensagem.style.color = "rgb(100, 255, 100)";
+        setTimeout(() => {
+            window.location.href = "sala.html";
+        }, 1500);
+
     } catch (err) {
         mensagem.textContent = "Erro na conexão com a API";
         mensagem.style.color = "rgb(255, 100, 100)";

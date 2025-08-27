@@ -7,41 +7,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Aluno {
-  id         Int         @id @default(autoincrement())
-  nome       String      @db.VarChar(100)
-  email      String?     @db.VarChar(100)
-  telefones  Telefone[]
-  matriculas Matricula[]
+model aluno {
+  id          Int         @id @default(autoincrement())
+  nome        String      @db.VarChar(100)
+  email       String      @db.VarChar(100)
+  telefone    String?     @db.VarChar(20)
+  datanasc    DateTime?   @db.Date
+  arteMarcial String?     @db.VarChar(50)
+  matricula   matricula[]
 }
 
-model Telefone {
-  id          Int        @id @default(autoincrement())
-  alunoID     Int?
-  professorID Int?
-  numero      String     @db.VarChar(10)
-  tipo        String     @db.VarChar(100)
-  aluno       Aluno?     @relation(fields: [alunoID], references: [id])
-  professor   Professor? @relation(fields: [professorID], references: [id])
+model matricula {
+  id            Int       @id @default(autoincrement())
+  alunoId       Int
+  turmaId       Int
+  dataMatricula DateTime? @default(dbgenerated("(curdate())")) @db.Date
+  aluno         aluno     @relation(fields: [alunoId], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "matricula_ibfk_1")
+  turma         turma     @relation(fields: [turmaId], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "matricula_ibfk_2")
+
+  @@index([alunoId], map: "alunoId")
+  @@index([turmaId], map: "turmaId")
 }
 
-model Matricula {
-  id       Int      @id @default(autoincrement())
-  alunoID  Int
-  data     DateTime @default(now())
-  aluno    Aluno    @relation(fields: [alunoID], references: [id])
+model professor {
+  id          Int     @id @default(autoincrement())
+  nome        String  @db.VarChar(100)
+  email       String  @db.VarChar(100)
+  telefone    String? @db.VarChar(20)
+  arteMarcial String? @db.VarChar(50)
+  turma       turma[]
 }
 
-model Professor {
-  id        Int        @id @default(autoincrement())
-  nome      String     @db.VarChar(100)
-  telefones Telefone[]
-  turmas    Turma[]    
-}
+model turma {
+  id          Int         @id @default(autoincrement())
+  nome        String      @db.VarChar(50)
+  arteMarcial String?     @db.VarChar(50)
+  professorId Int?
+  matricula   matricula[]
+  professor   professor?  @relation(fields: [professorId], references: [id], onUpdate: Restrict, map: "turma_ibfk_1")
 
-model Turma {
-  id          Int       @id @default(autoincrement())
-  nome        String    @db.VarChar(100)
-  professorID Int
-  professor   Professor @relation(fields: [professorID], references: [id])
+  @@index([professorId], map: "professorId")
 }

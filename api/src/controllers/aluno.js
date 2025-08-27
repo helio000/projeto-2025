@@ -3,8 +3,17 @@ const prisma = new PrismaClient();
 
 const create = async (req, res) => {
   try {
+    const { nome, email, telefone, datanasc, arteMarcial } = req.body;
+    const dataNascimento = datanasc ? new Date(datanasc) : null;
+
     const aluno = await prisma.aluno.create({
-      data: req.body,
+      data: {
+        nome,
+        email: email.toLowerCase(),
+        telefone,
+        datanasc: dataNascimento,
+        arteMarcial
+      },
     });
     res.status(201).json(aluno);
   } catch (error) {
@@ -37,9 +46,18 @@ const readOne = async (req, res) => {
 const update = async (req, res) => {
   const { id } = req.params;
   try {
+    const { nome, email, telefone, datanasc, arteMarcial } = req.body;
+    const dataNascimento = datanasc ? new Date(datanasc) : null;
+
     const aluno = await prisma.aluno.update({
       where: { id: parseInt(id) },
-      data: req.body,
+      data: {
+        nome,
+        email: email.toLowerCase(),
+        telefone,
+        datanasc: dataNascimento,
+        arteMarcial
+      },
     });
     res.status(200).json(aluno);
   } catch (error) {
