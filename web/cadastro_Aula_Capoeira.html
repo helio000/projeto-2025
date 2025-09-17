@@ -1,121 +1,112 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style1.css">
-     <link rel="stylesheet" href="login.html">
-    <title>Cadastro</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style1.css">
+<title>Cadastro</title>
 </head>
-<body style="background-image: url('fundoForm2.png'); background-size: cover; margin:0;">
+<body style="background-image: url('fotos/fundoForm2.png'); background-size: cover; margin:0;">
 
-    <h5 class="Cadastro">Cadastro</h5>
+<h5 class="Cadastro">Cadastro</h5>
 
-    <form id="formulario" class="box-form">
-        <div class="form">
-            <div class="input-group">
-                <label for="nome">Nome Completo</label>
-                <input type="text" id="nome" placeholder="Nome Completo" required />
-            </div>
-
-            <div class="input-group">
-                <label for="datanasc">Data de Nascimento</label>
-                <input id="datanasc" type="date" required />
-            </div>
-
-            <div class="input-group">
-                <label for="e-mail">E-mail</label>
-                <input type="email" id="e-mail" placeholder="Ex: email@gmail.com" required />
-            </div>
-
-            <div class="input-group">
-                <label for="telefone">Telefone</label>
-                <input type="tel" id="telefone" placeholder="Telefone" required />
-            </div>
-
-            <div class="input-group">
-                <label for="arte-marcial">Arte Marcial</label>
-                <select id="arte-marcial" required>
-                    <option value="">Selecione uma opção</option>
-                    <option value="capoeira">Capoeira</option>
-                    <option value="jiu-jitsu">Jiu-Jitsu</option>
-                    <option value="karate">Karatê</option>
-                </select>
-            </div>
-
-            <div class="input-group">
-                <button type="submit" class="enviar-button">Enviar</button>
-            </div>
-
-            <div class="input-group">
-                <button type="button" class="enviar-button" onclick="window.location.href='login.html'">Login</button>
-            </div>
+<form id="formulario" class="box-form">
+    <div class="form">
+        <div class="input-group">
+            <label for="nome">Nome Completo</label>
+            <input type="text" id="nome" placeholder="Nome Completo" required />
         </div>
-    </form>
 
-<<<<<<< HEAD
-=======
-    
+        <div class="input-group">
+            <label for="datanasc">Data de Nascimento</label>
+            <input id="datanasc" type="date" required />
+        </div>
 
->>>>>>> 972a57eb9f41b2b9570b444079b434cab02bdcb9
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
+        <div class="input-group">
+            <label for="e-mail">E-mail</label>
+            <input type="email" id="e-mail" placeholder="Ex: email@gmail.com" required />
+        </div>
 
-        async function criarAluno() {
-            const dados = {
-                nome: document.getElementById("nome").value,
-                email: document.getElementById("e-mail").value,
-                telefone: document.getElementById("telefone").value,
-                datanasc: document.getElementById("datanasc").value,
-                arteMarcial: document.getElementById("arte-marcial").value
-            };
-            try {
-                const resposta = await fetch("http://localhost:3100/alunos", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(dados)
-                });
-                const resultado = await resposta.json();
-                alert("Aluno cadastrado com sucesso!");
-                listarAlunos();
-                document.getElementById("formulario").reset();
-            } catch (erro) {
-                alert("Erro ao enviar dados: " + erro);
-            }
+        <div class="input-group">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" placeholder="Telefone" required />
+        </div>
+
+        <div class="input-group">
+            <label for="arte-marcial">Arte Marcial</label>
+            <select id="arte-marcial" required>
+                <option value="">Selecione uma opção</option>
+                <option value="capoeira">Capoeira</option>
+                <option value="jiu-jitsu">Jiu-Jitsu</option>
+                <option value="karate">Karatê</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <button type="submit" class="enviar-button">Enviar</button>
+        </div>
+
+        <div class="input-group">
+            <button type="button" class="enviar-button" onclick="window.location.href='login.html'">Login</button>
+        </div>
+    </div>
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("formulario");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const dados = {
+            nome: document.getElementById("nome").value.trim(),
+            datanasc: document.getElementById("datanasc").value,
+            email: document.getElementById("e-mail").value.trim().toLowerCase(),
+            telefone: document.getElementById("telefone").value.replace(/\D/g, ""), // remove caracteres não numéricos
+            arteMarcial: document.getElementById("arte-marcial").value
+        };
+
+        // Validação dos campos
+        if (!dados.nome || !dados.datanasc || !dados.email || !dados.telefone || !dados.arteMarcial) {
+            alert("Preencha todos os campos!");
+            return;
         }
 
-        async function listarAlunos() {
-            try {
-                const resposta = await fetch("http://localhost:3100/alunos");
-                const alunos = await resposta.json();
-
-                const lista = document.getElementById("lista-alunos");
-                lista.innerHTML = "";
-
-                alunos.forEach(aluno => {
-                    const li = document.createElement("li");
-                    li.textContent = `${aluno.nome} - ${aluno.email} - ${aluno.telefone}`;
-                    lista.appendChild(li);
-                });
-            } catch (erro) {
-                console.log("Erro ao listar alunos:", erro);
-            }
-        }
-
-        const formAluno = document.getElementById("formulario");
-        if (formAluno) {
-            formAluno.addEventListener("submit", (e) => {
-                e.preventDefault();
-                criarAluno();
+        try {
+            const resposta = await fetch("http://localhost:3100/alunos", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dados)
             });
+
+            const resultado = await resposta.json();
+
+            if (!resposta.ok) {
+                console.error("Erro do backend:", resultado);
+                alert("Erro ao cadastrar aluno: " + (resultado.error || "Erro desconhecido"));
+                return;
+            }
+
+            // Salva no localStorage
+            let alunos = JSON.parse(localStorage.getItem("alunos")) || [];
+            alunos.push(resultado); // Salva o objeto retornado do backend
+            localStorage.setItem("alunos", JSON.stringify(alunos));
+
+            alert("Aluno cadastrado com sucesso! Você será redirecionado para a sala em 5 segundos.");
+            form.reset();
+
+            setTimeout(() => {
+                window.location.href = "sala.html";
+            }, 5000);
+
+        } catch (erro) {
+            console.error("Erro ao enviar dados para o servidor:", erro);
+            alert("Erro na conexão com o servidor.");
         }
-
-        listarAlunos();
-
     });
-    </script>
-
-    <script src="script3.js"></script>
+});
+</script>
 
 </body>
 </html>

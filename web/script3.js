@@ -4,18 +4,36 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const dados = {
-            nome: document.getElementById("nome").value.trim(),
-            datanasc: document.getElementById("datanasc").value, 
-            email: document.getElementById("e-mail").value.trim().toLowerCase(),
-            telefone: document.getElementById("telefone").value.trim(),
-            arteMarcial: document.getElementById("arte-marcial").value
-        };
+        // Pega os valores do formulário
+        const nome = document.getElementById("nome").value.trim();
+        const datanascInput = document.getElementById("datanasc").value;
+        const email = document.getElementById("e-mail").value.trim().toLowerCase();
+        const telefone = document.getElementById("telefone").value.replace(/\D/g, ""); // remove caracteres não numéricos
+        const arteMarcial = document.getElementById("arte-marcial").value;
 
-        if (!dados.nome || !dados.datanasc || !dados.email || !dados.telefone || !dados.arteMarcial) {
+        // Validação dos campos obrigatórios
+        if (!nome || !datanascInput || !email || !telefone || !arteMarcial) {
             alert("Preencha todos os campos!");
             return;
         }
+
+        // Valida se a data é válida
+        const dataNascimento = new Date(datanascInput);
+        if (isNaN(dataNascimento.getTime())) {
+            alert("Data de nascimento inválida!");
+            return;
+        }
+
+        // Formata a data para YYYY-MM-DD
+        const datanascFormatada = datanascInput; // já vem nesse formato do input type=date
+
+        const dados = {
+            nome,
+            datanasc: datanascFormatada,
+            email,
+            telefone,
+            arteMarcial
+        };
 
         try {
             const resposta = await fetch("http://localhost:3100/alunos", {
@@ -24,23 +42,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify(dados)
             });
 
+            let resultado;
+            try {
+                resultado = await resposta.json();
+            } catch {
+                resultado = { error: "Erro desconhecido" };
+            }
+
             if (!resposta.ok) {
-                const erro = await resposta.json();
-                alert("Erro ao cadastrar aluno: " + erro.error);
+                console.error("Erro do backend:", resultado);
+                alert("Erro ao cadastrar aluno: " + (resultado.error || "Erro desconhecido"));
                 return;
             }
 
-            // Salva também no localStorage para exibir na sala
+            // Salva o objeto retornado pelo backend
             let alunos = JSON.parse(localStorage.getItem("alunos")) || [];
-            alunos.push(dados);
+            alunos.push(resultado);
             localStorage.setItem("alunos", JSON.stringify(alunos));
 
             alert("Aluno cadastrado com sucesso! Você será redirecionado para a sala em 5 segundos.");
+            form.reset();
+
             setTimeout(() => {
                 window.location.href = "sala.html";
             }, 5000);
 
-            form.reset();
         } catch (erro) {
             console.error("Erro ao enviar dados para o servidor:", erro);
             alert("Erro na conexão com o servidor.");

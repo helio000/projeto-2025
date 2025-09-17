@@ -7,13 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model aluno {
   id          Int         @id @default(autoincrement())
   nome        String      @db.VarChar(100)
-  email       String      @db.VarChar(100)
-  telefone    String?     @db.VarChar(20)
-  datanasc    DateTime?   @db.Date
-  arteMarcial String?     @db.VarChar(50)
+  email       String      @unique @db.VarChar(100)
+  telefone    String      @db.VarChar(20)
+  datanasc    DateTime    @db.Date
+  arteMarcial String      @db.VarChar(50)
   matricula   matricula[]
 }
 
@@ -32,7 +33,7 @@ model matricula {
 model professor {
   id          Int     @id @default(autoincrement())
   nome        String  @db.VarChar(100)
-  email       String  @db.VarChar(100)
+  email       String  @unique @db.VarChar(100)   // 🔒 Também único para professores
   telefone    String? @db.VarChar(20)
   arteMarcial String? @db.VarChar(50)
   turma       turma[]

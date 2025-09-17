@@ -6,104 +6,39 @@
 <link rel="stylesheet" href="style2.css">
 <title>Sala de Alunos</title>
 <style>
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
+html, body { height: 100%; margin: 0; padding: 0; }
 body {
     font-family: Arial, sans-serif;
     color: white;
     background-image: url('fundoInfo.png');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-.Informações {
-    text-align: center;
-    font-size: 28px;
-    margin: 20px 0;
-    text-shadow: 1px 1px 5px black;
-}
-
-#filtros {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-#filtros button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #28a745;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#filtros button:hover {
-    background-color: #218838;
-}
-
+.Informações { text-align: center; font-size: 28px; margin: 20px 0; text-shadow: 1px 1px 5px black; }
+#filtros { display: flex; gap: 10px; margin-bottom: 20px; }
+#filtros button { padding: 8px 15px; border: none; border-radius: 5px; background-color: #28a745; color: white; cursor: pointer; transition: 0.3s; }
+#filtros button:hover { background-color: #218838; }
 #lista-sala {
-    width: 90%;
-    height: auto;
-    max-width: 800px;
-    margin-bottom: 40px;
-    padding: 20px;
-    background-color: rgba(0,0,0,0.7);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    width: 90%; max-width: 800px; margin-bottom: 20px; padding: 20px;
+    background-color: rgba(0,0,0,0.7); border-radius: 10px;
+    display: flex; flex-direction: column; gap: 15px; min-height: 50px;
 }
-
 .aluno {
-    background-color: rgba(255,255,255,0.1);
-    padding: 15px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    background-color: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;
+    display: flex; flex-direction: column; gap: 5px;
 }
-
-.aluno p {
-    margin: 0;
-}
-
-.remover {
-    align-self: flex-start;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: red;
-    color: white;
-    cursor: pointer;
-}
-
-.remover:hover {
-    background-color: darkred;
-}
-
+.aluno p { margin: 0; }
+.remover { align-self: flex-start; padding: 5px 10px; border: none; border-radius: 5px; background-color: red; color: white; cursor: pointer; }
+.remover:hover { background-color: darkred; }
+#voltar-home { padding: 10px 20px; margin: 10px 0 40px 0; border: none; border-radius: 5px; background-color: #007bff; color: white; cursor: pointer; transition: 0.3s; }
+#voltar-home:hover { background-color: #0056b3; }
 @media (max-width: 600px) {
-    #lista-sala {
-        padding: 15px;
-    }
-
-    .Informações {
-        font-size: 22px;
-    }
-
-    #filtros {
-        flex-direction: column;
-        gap: 5px;
-    }
+    #lista-sala { padding: 15px; }
+    .Informações { font-size: 22px; }
+    #filtros { flex-direction: column; gap: 5px; }
 }
 </style>
 </head>
@@ -120,22 +55,64 @@ body {
 
 <fieldset id="lista-sala"></fieldset>
 
+<button id="voltar-home">Voltar para Home</button>
+
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const lista = document.getElementById("lista-sala");
     const botoes = document.querySelectorAll("#filtros button");
-    let alunos = JSON.parse(localStorage.getItem("alunos")) || [];
+    let alunos = [];
 
+    // Botão voltar
+    document.getElementById("voltar-home").addEventListener("click", () => {
+        window.location.href = "home.html";
+    });
+
+    // Carrega alunos do banco
+    async function carregarAlunos() {
+        try {
+            const resposta = await fetch('http://localhost:3100/alunos');
+            if (!resposta.ok) throw new Error("Erro ao buscar alunos");
+            alunos = await resposta.json();
+            localStorage.setItem('alunos', JSON.stringify(alunos));
+            atualizarLista();
+        } catch (err) {
+            console.error("Erro ao carregar alunos:", err);
+            // Caso falhe, tenta carregar do localStorage
+            const dadosLocal = localStorage.getItem('alunos');
+            if (dadosLocal) {
+                alunos = JSON.parse(dadosLocal);
+                atualizarLista();
+            }
+        }
+    }
+
+    // Remove aluno
+    async function removerAluno(id) {
+        try {
+            const resposta = await fetch(`http://localhost:3100/alunos/${id}`, { method: "DELETE" });
+            if (!resposta.ok) throw new Error("Erro ao remover aluno");
+
+            alunos = alunos.filter(a => a.id !== id);
+            localStorage.setItem('alunos', JSON.stringify(alunos));
+            atualizarLista();
+        } catch (err) {
+            console.error(err);
+            alert("Não foi possível remover o aluno.");
+        }
+    }
+
+    // Atualiza lista
     function atualizarLista(filtro = "") {
         lista.innerHTML = "";
         const filtrados = filtro ? alunos.filter(a => a.arteMarcial === filtro) : alunos;
 
-        if(filtrados.length === 0){
+        if (filtrados.length === 0) {
             const p = document.createElement("p");
             p.textContent = "Nenhum aluno cadastrado.";
             lista.appendChild(p);
         } else {
-            filtrados.forEach((aluno, index) => {
+            filtrados.forEach(aluno => {
                 const div = document.createElement("div");
                 div.classList.add("aluno");
 
@@ -144,24 +121,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p><strong>Email:</strong> ${aluno.email}</p>
                     <p><strong>Telefone:</strong> ${aluno.telefone}</p>
                     <p><strong>Arte Marcial:</strong> ${aluno.arteMarcial}</p>
-                    <p><strong>Data de Nascimento:</strong> ${aluno.datanasc}</p>
-                    <button class="remover" data-index="${index}">Remover</button>
+                    <p><strong>Data de Nascimento:</strong> ${aluno.datanasc ? aluno.datanasc.split('T')[0] : ''}</p>
+                    <button class="remover">Remover</button>
                 `;
                 lista.appendChild(div);
-            });
 
-            const removerBotoes = document.querySelectorAll(".remover");
-            removerBotoes.forEach(botao => {
-                botao.addEventListener("click", (e) => {
-                    const i = e.target.getAttribute("data-index");
-                    alunos.splice(i, 1);
-                    localStorage.setItem("alunos", JSON.stringify(alunos));
-                    atualizarLista(filtro);
+                div.querySelector(".remover").addEventListener("click", () => {
+                    removerAluno(aluno.id);
                 });
             });
         }
     }
 
+    // Filtros
     botoes.forEach(btn => {
         btn.addEventListener("click", () => {
             const arte = btn.getAttribute("data-arte");
@@ -169,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    atualizarLista();
+    await carregarAlunos();
 });
 </script>
 
