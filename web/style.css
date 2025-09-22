@@ -35,6 +35,7 @@ header a.informações:hover {
   background: red;
   color: white;
 }
+
 /*--------------------------------*/
 
 /*--  Hero --*/
@@ -56,7 +57,7 @@ header a.informações:hover {
 }
 
 .hero-logo {
-  background: url("logo.png") no-repeat center/cover;
+  background: url("fotos/logo.png") no-repeat center/cover;
   width: 100px;
   height: 100px;
   margin-bottom: 20px;
@@ -76,6 +77,7 @@ header a.informações:hover {
 .button:hover {
   background-color: darkred;
 }
+
 /*--------------------------------*/
 
 /*--  Sobre --*/
@@ -97,6 +99,7 @@ header a.informações:hover {
   height: auto;
   border-radius: 5px;
 }
+
 /*--------------------------------*/
 
 /*--  Benefícios --*/
@@ -121,6 +124,7 @@ header a.informações:hover {
   padding: 20px;
   border-radius: 5px;
 }
+
 /*--------------------------------*/
 
 /*--  Parcerias --*/
@@ -146,9 +150,10 @@ header a.informações:hover {
   background-position: center;
 }
 
-.logo1 { background-image: url("logo_mar_art.png"); width: 200px; height: 200px; }
-.logo2 { background-image: url("mc_logo.png"); width: 200px; height: 120px; }
-.logo3 { background-image: url("ficlub_logo.png"); width: 250px; height: 180px; }
+.logo1 { background-image: url("fotos/logo_mar_art.png"); width: 200px; height: 200px; }
+.logo2 { background-image: url("fotos/mc_logo.png"); width: 200px; height: 120px; }
+.logo3 { background-image: url("fotos/ficlub_logo.png"); width: 250px; height: 180px; }
+
 /*--------------------------------*/
 
 /*--  Criadores --*/
@@ -171,13 +176,14 @@ header a.informações:hover {
   background-size: cover;
   border-radius: 5px;
   background-position: center;
-   justify-content: center;
+  justify-content: center;
   align-items: center;  
 }
 
-.foto1 { background-image: url("foto1.png"); }
-.foto2 { background-image: url("foto4.jpeg"); }
-.foto3 { background-image: url("foto3.jpg"); }
+.foto1 { background-image: url("fotos/foto1.png"); }
+.foto2 { background-image: url("fotos/foto4.jpeg"); }
+.foto3 { background-image: url("fotos/Helio000.jpeg"); }
+
 /*--------------------------------*/
 
 /*--  Rodapé --*/
@@ -187,6 +193,7 @@ footer {
   text-align: center;
   font-size: 0.9rem;
 }
+
 /*--------------------------------*/
 
 /*-- Responsividade --*/
@@ -194,12 +201,8 @@ footer {
   .hero h1 { font-size: 2rem; }
   .button { font-size: 0.9rem; padding: 10px 18px; }
   .sobre { flex-direction: column; text-align: center; }
-   .grid-criadores {
+  .grid-criadores {
     flex-direction: row;   
     justify-content: center;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 972a57eb9f41b2b9570b444079b434cab02bdcb9
