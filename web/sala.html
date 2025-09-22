@@ -10,12 +10,20 @@ html, body { height: 100%; margin: 0; padding: 0; }
 body {
     font-family: Arial, sans-serif;
     color: white;
-    background-image: url('fundoInfo.png');
-    background-size: cover;
+    background-image: url('fotos/fundoForm2.png');
+    background-size: center;
     background-position: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
+}
+.conteudo {
+    flex: 1; /* Faz o conteúdo ocupar todo espaço acima do botão */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 .Informações { text-align: center; font-size: 28px; margin: 20px 0; text-shadow: 1px 1px 5px black; }
 #filtros { display: flex; gap: 10px; margin-bottom: 20px; }
@@ -27,14 +35,25 @@ body {
     display: flex; flex-direction: column; gap: 15px; min-height: 50px;
 }
 .aluno {
-    background-color: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;
+    background-color: rgba(255,255,255,0.1); padding: 1px; border-radius: 8px;
     display: flex; flex-direction: column; gap: 5px;
 }
 .aluno p { margin: 0; }
 .remover { align-self: flex-start; padding: 5px 10px; border: none; border-radius: 5px; background-color: red; color: white; cursor: pointer; }
 .remover:hover { background-color: darkred; }
-#voltar-home { padding: 10px 20px; margin: 10px 0 40px 0; border: none; border-radius: 5px; background-color: #007bff; color: white; cursor: pointer; transition: 0.3s; }
+#voltar-home {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: auto; /* Mantém o botão embaixo */
+    margin-bottom: 20px;
+}
 #voltar-home:hover { background-color: #0056b3; }
+
 @media (max-width: 600px) {
     #lista-sala { padding: 15px; }
     .Informações { font-size: 22px; }
@@ -44,16 +63,18 @@ body {
 </head>
 <body>
 
-<h5 class="Informações">Sala de Alunos</h5>
+<div class="conteudo">
+    <h5 class="Informações">Sala de Alunos</h5>
 
-<div id="filtros">
-    <button data-arte="">Todos</button>
-    <button data-arte="capoeira">Capoeira</button>
-    <button data-arte="jiu-jitsu">Jiu-Jitsu</button>
-    <button data-arte="karate">Karatê</button>
+    <div id="filtros">
+        <button data-arte="">Todos</button>
+        <button data-arte="capoeira">Capoeira</button>
+        <button data-arte="jiu-jitsu">Jiu-Jitsu</button>
+        <button data-arte="karate">Karatê</button>
+    </div>
+
+    <fieldset id="lista-sala"></fieldset>
 </div>
-
-<fieldset id="lista-sala"></fieldset>
 
 <button id="voltar-home">Voltar para Home</button>
 
@@ -78,7 +99,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             atualizarLista();
         } catch (err) {
             console.error("Erro ao carregar alunos:", err);
-            // Caso falhe, tenta carregar do localStorage
             const dadosLocal = localStorage.getItem('alunos');
             if (dadosLocal) {
                 alunos = JSON.parse(dadosLocal);
