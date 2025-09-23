@@ -12,13 +12,13 @@ body {
     font-size: 60px;
 }
 
+
 fieldset {
     color: white;
-    height: 120px;
+    
     width: 25%;
     border-radius: 20px;
 }
-
 .voltar {
     background-color: rgb(250, 64, 64);
     border: 30px;
@@ -55,9 +55,9 @@ button:hover {
     border: 2px solid white;
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.5);
-    text-align: left;
+    text-align: column;
     width: 80%;
-    margin-left: auto;
+    margin-left: column;
     margin-right: auto;
     color: white;
 }
