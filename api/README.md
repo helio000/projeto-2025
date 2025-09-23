@@ -1,18 +1,18 @@
+README.md
 api/
- ├── prisma/
- │    └── schema.prisma       
- ├── src/
- │    ├── controllers/        
- │    │    ├── aluno.js
- │    │    ├── telefone.js
- │    │    ├── matricula.js
- │    │    ├── professor.js
- │    │    └── turma.js
- │    ├── router            
- │    │    └
- │    └── server.js          
- ├── package.json
- └── README.md
+  prisma/
+    schema.prisma
+  src/
+    controllers/
+      aluno.js
+      telefone.js
+      matricula.js
+      professor.js
+      turma.js
+    router/
+    server.js
+package.json
+README.md
 
  ## ⚙️ Configuração e Instalação
 
