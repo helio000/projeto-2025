@@ -206,3 +206,12 @@ footer {
     justify-content: center;
   }
 }
+.sobre p {
+  font-size: 20px; 
+  color: #ffffff;     
+  line-height: 1.6; 
+}
+.criador a i {
+  font-size: 36px; 
+  margin: 5px; 
+}
