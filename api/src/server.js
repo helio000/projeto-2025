@@ -19,7 +19,8 @@ app.put('/alunos/:id', update);
 app.delete('/alunos/:id', remove);
 
 // Login
-app.post('/login', login);
+app.post('/alunos/login', login);
+
 
 // Rota inicial
 app.get('/', (req, res) => {
