@@ -15,27 +15,29 @@ header {
   background-color: black;
   padding: 15px 30px;
   display: flex;
-  justify-content: center; /* centraliza os links */
-  gap: 20px;               /* espaço entre os links */
+  flex-direction: column; /* empilha os links verticalmente */
+  align-items: flex-end;  /* mantém no canto direito */
+  gap: 10px;              /* espaço entre os links */
   position: sticky;
-  top: 0;
   z-index: 10;
 }
 
-header a.informacoes {
+header a.informações {
   text-decoration: none;
-  background: white;
-  color: black;
-  padding: 8px 20px;
-  border-radius: 20px;
+  background-color: red;   
+  color: white;            
+  padding: 12px 24px;      
+  border-radius: 8px;      
   font-weight: bold;
   transition: 0.3s;
+  cursor: pointer;
 }
 
-header a.informacoes:hover {
-  background: red;
+header a.informações:hover {
+  background-color: darkred; 
   color: white;
 }
+
 
 /*--------------------------------*/
 
@@ -215,4 +217,4 @@ footer {
 .criador a i {
   font-size: 36px; 
   margin: 5px; 
-}
+} 
