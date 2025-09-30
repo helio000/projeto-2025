@@ -1,164 +1,149 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-// Função para criar um aluno
+// Criar aluno
 const create = async (req, res) => {
   try {
-    const { nome, email, telefone, datanasc, arteMarcial } = req.body;
+    let { nome, email, telefone, datanasc, arteMarcial, RA } = req.body;
 
-    // Validação dos campos obrigatórios
-    if (!nome || !email || !telefone || !arteMarcial) {
-      return res.status(400).json({ error: 'Nome, e-mail, telefone e arte marcial são obrigatórios.' });
+    if (!nome || !email || !telefone || !datanasc || !arteMarcial) {
+      return res.status(400).json({ error: "Todos os campos são obrigatórios." });
     }
 
-    // Validando formato de data, se 'datanasc' não for vazio, converte para Date
-    let dataNascimento = null;
-    if (datanasc) {
-      dataNascimento = new Date(datanasc);
-      if (isNaN(dataNascimento)) {
-        return res.status(400).json({ error: 'Data de nascimento inválida.' });
-      }
+    const dataValida = new Date(datanasc);
+    if (isNaN(dataValida.getTime())) {
+      return res.status(400).json({ error: "Data de nascimento inválida." });
     }
 
-    // Verificar se o email já existe no banco de dados
-    const alunoExistente = await prisma.aluno.findUnique({
-      where: { email: email.toLowerCase() }
+    if (!RA) {
+      // Gera RA aleatório de 6 dígitos se não for informado
+      RA = Math.floor(100000 + Math.random() * 900000);
+    }
+
+    const existingAluno = await prisma.aluno.findUnique({
+      where: { email: email.trim().toLowerCase() },
     });
-    if (alunoExistente) {
-      return res.status(400).json({ error: 'Já existe um aluno cadastrado com esse e-mail.' });
+
+    if (existingAluno) {
+      return res.status(400).json({ error: "Já existe um aluno cadastrado com este e-mail." });
     }
 
-    // Criar o novo aluno
     const aluno = await prisma.aluno.create({
       data: {
-        nome,
-        email: email.toLowerCase(), // Garantir que o email esteja em minúsculas
-        telefone,
-        datanasc: dataNascimento,
-        arteMarcial
+        nome: nome.trim(),
+        email: email.trim().toLowerCase(),
+        telefone: telefone.trim(),
+        datanasc: dataValida,
+        arteMarcial: arteMarcial.trim(),
+        RA: Number(RA)
       },
     });
 
     res.status(201).json(aluno);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
+    console.error("Erro em create aluno:", error);
+    res.status(500).json({ error: "Erro interno do servidor." });
   }
 };
 
-// Função para ler todos os alunos
+// Listar todos os alunos
 const read = async (req, res) => {
   try {
     const alunos = await prisma.aluno.findMany();
     res.status(200).json(alunos);
   } catch (error) {
-    console.error(error);
-    res.status(400).json({ error: error.message });
+    console.error("Erro em read alunos:", error);
+    res.status(500).json({ error: "Erro interno do servidor." });
   }
 };
 
-// Função para ler um aluno específico
+// Buscar aluno pelo ID
 const readOne = async (req, res) => {
-  const { id } = req.params;
+  const idNum = parseInt(req.params.id);
+  if (isNaN(idNum)) return res.status(400).json({ error: "ID inválido" });
+
   try {
-    const aluno = await prisma.aluno.findUnique({
-      where: { id: parseInt(id) },
-    });
+    const aluno = await prisma.aluno.findUnique({ where: { id: idNum } });
     if (!aluno) return res.status(404).json({ error: 'Aluno não encontrado' });
     res.status(200).json(aluno);
   } catch (error) {
-    console.error(error);
-    res.status(400).json({ error: error.message });
+    console.error("Erro em readOne aluno:", error);
+    res.status(500).json({ error: "Erro interno do servidor." });
   }
 };
 
-// Função para atualizar um aluno
+// Atualizar aluno
 const update = async (req, res) => {
-  const { id } = req.params;
+  const idNum = parseInt(req.params.id);
+  if (isNaN(idNum)) return res.status(400).json({ error: "ID inválido" });
+
   try {
-    const { nome, email, telefone, datanasc, arteMarcial } = req.body;
+    let { nome, email, telefone, datanasc, arteMarcial, RA } = req.body;
 
-    // Validação dos campos obrigatórios
-    if (!nome || !email || !telefone || !arteMarcial) {
-      return res.status(400).json({ error: 'Nome, e-mail, telefone e arte marcial são obrigatórios.' });
+    const dataValida = datanasc ? new Date(datanasc) : undefined;
+    if (datanasc && isNaN(dataValida.getTime())) {
+      return res.status(400).json({ error: "Data de nascimento inválida." });
     }
 
-    // Validando formato de data
-    let dataNascimento = null;
-    if (datanasc) {
-      dataNascimento = new Date(datanasc);
-      if (isNaN(dataNascimento)) {
-        return res.status(400).json({ error: 'Data de nascimento inválida.' });
-      }
-    }
-
-    // Verificando se o email já existe para outro aluno
-    const alunoExistente = await prisma.aluno.findUnique({
-      where: { email: email.toLowerCase() }
-    });
-    if (alunoExistente && alunoExistente.id !== parseInt(id)) {
-      return res.status(400).json({ error: 'Já existe um aluno com esse e-mail.' });
-    }
-
-    // Atualizando o aluno
     const aluno = await prisma.aluno.update({
-      where: { id: parseInt(id) },
+      where: { id: idNum },
       data: {
-        nome,
-        email: email.toLowerCase(),
-        telefone,
-        datanasc: dataNascimento,
-        arteMarcial
+        nome: nome?.trim(),
+        email: email?.trim().toLowerCase(),
+        telefone: telefone?.trim(),
+        datanasc: dataValida,
+        arteMarcial: arteMarcial?.trim(),
+        RA: RA ? Number(RA) : undefined
       },
     });
 
     res.status(200).json(aluno);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
+    console.error("Erro em update aluno:", error);
+    res.status(500).json({ error: "Erro interno do servidor." });
   }
 };
 
-// Função para remover um aluno
+// Remover aluno
 const remove = async (req, res) => {
-  const { id } = req.params;
+  const idNum = parseInt(req.params.id);
+  if (isNaN(idNum)) return res.status(400).json({ error: "ID inválido" });
+
   try {
-    await prisma.aluno.delete({
-      where: { id: parseInt(id) },
-    });
+    await prisma.aluno.delete({ where: { id: idNum } });
     res.status(200).json({ message: 'Aluno removido com sucesso' });
   } catch (error) {
-    console.error(error);
-    res.status(400).json({ error: error.message });
+    console.error("Erro em remove aluno:", error);
+    res.status(500).json({ error: "Erro interno do servidor." });
   }
 };
 
-// Função para realizar login
+// Login do aluno
 const login = async (req, res) => {
-  const { nome, email } = req.body;
+  let { nome, email } = req.body;
 
-  // Verificando se os campos obrigatórios estão presentes
   if (!nome || !email) {
-    return res.status(400).json({ error: 'Nome e e-mail são obrigatórios' });
+    return res.status(400).json({ error: "Nome e e-mail são obrigatórios" });
   }
+
+  nome = nome.trim();
+  email = email.trim().toLowerCase();
 
   try {
     const aluno = await prisma.aluno.findFirst({
-      where: {
-        nome: nome.trim(),
-        email: email.trim().toLowerCase(),
-      }
+      where: { nome, email },
     });
 
     if (!aluno) {
-      return res.status(401).json({ error: 'Nome ou e-mail incorretos' });
+      return res.status(401).json({ error: "Nome ou e-mail incorretos" });
     }
 
-    res.status(200).json({ message: 'Login realizado com sucesso!', aluno });
+    res.status(200).json({ message: "Login realizado com sucesso!", aluno });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
+    console.error("Erro em login aluno:", error);
+    res.status(500).json({ error: "Erro interno do servidor." });
   }
 };
 
 module.exports = { create, read, readOne, update, remove, login };
+
