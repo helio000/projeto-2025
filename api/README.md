@@ -44,6 +44,7 @@ A API oferece rotas para realizar operações CRUD nas entidades.
 # 👤 Alunos
 Método	Rota	Descrição
 POST	/alunos	Criar um novo aluno
+
 GET	/alunos	Listar todos os alunos
 GET	/alunos/:id	Buscar aluno por ID
 PUT	/alunos/:id	Atualizar dados do aluno
