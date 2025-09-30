@@ -81,7 +81,12 @@
             body: JSON.stringify(dados)
           });
 
-          const resultado = await resposta.json();
+          let resultado;
+          try {
+            resultado = await resposta.json();
+          } catch {
+            resultado = { error: "Resposta inválida do servidor" };
+          }
 
           if (!resposta.ok) {
             console.error("Erro do backend:", resultado);
