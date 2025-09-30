@@ -42,42 +42,68 @@ O servidor estará disponível em: http://localhost:3100
 A API oferece rotas para realizar operações CRUD nas entidades.
 
 # 👤 Alunos
-Método	Rota	Descrição
+# Método	Rota	Descrição
 POST	/alunos	Criar um novo aluno
 
 GET	/alunos	Listar todos os alunos
+
 GET	/alunos/:id	Buscar aluno por ID
+
 PUT	/alunos/:id	Atualizar dados do aluno
+
 DELETE	/alunos/:id	Deletar um aluno
+
 POST	/alunos/login	Realizar login de aluno
+
 # 📞 Telefones
-Método	Rota	Descrição
+# Método	Rota	Descrição
 POST	/telefones	Criar um novo telefone
+
 GET	/telefones	Listar todos os telefones
+
 GET	/telefones/:id	Buscar telefone por ID
+
 PUT	/telefones/:id	Atualizar telefone
+
 DELETE	/telefones/:id	Remover telefone
+
 # 📚 Matrículas
-Método	Rota	Descrição
+# Método	Rota	Descrição
 POST	/matriculas	Criar uma nova matrícula
+
 GET	/matriculas	Listar todas as matrículas
+
 GET	/matriculas/:id	Buscar matrícula por ID
+
 PUT	/matriculas/:id	Atualizar matrícula
+
 DELETE	/matriculas/:id	Remover matrícula
+
 # 👨‍🏫 Professores
-Método	Rota	Descrição
+# Método	Rota	Descrição
 POST	/professores	Criar um novo professor
+
 GET	/professores	Listar todos os professores
+
 GET	/professores/:id	Buscar professor por ID
+
 PUT	/professores/:id	Atualizar professor
+
 DELETE	/professores/:id	Remover professor
+
 # 🥋 Turmas
-Método	Rota	Descrição
+# Método	Rota	Descrição
+
 POST	/turmas	Criar uma nova turma
+
 GET	/turmas	Listar todas as turmas
+
 GET	/turmas/:id	Buscar turma por ID
+
 PUT	/turmas/:id	Atualizar turma
+
 DELETE	/turmas/:id	Remover turma
+
 # 📝 Exemplos de requisições com curl
 Criar um aluno
 curl -X POST http://localhost:3100/alunos \
