@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Artes Marciais
 
 - Metodologia: Kanban
