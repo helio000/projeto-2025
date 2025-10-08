@@ -73,7 +73,7 @@ Remover aluno (DELETE /alunos/:id) → 200 ou 204.
 
 Login do aluno (POST /alunos/login) → com credenciais válidas retorna token; inválidas retorna 400.
 
-Validar token do aluno (GET /alunos/login) → 200 com token válido; 401 com token inválido/expirado.
+Validar token do aluno (GET /alunos/login) → 200 com token válido; 401 com token.
 
 ## Testes de Professores
 
@@ -132,3 +132,4 @@ Remover matrícula (DELETE /matriculas/:id) → 200 ou 204.
 - 4 Crie dentro da pasta ./api um arquivo chamado **.env** contendo as seguintes variáveis de ambiente:
 ```js
 DATABASE_URL="mysql://root@localhost:3306/escola?schema=public&timezone=UTC"
+
