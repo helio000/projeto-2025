@@ -52,7 +52,7 @@
 <img src="api/imagem/atividade 3.jpeg" alt="swot" width="600"/>
 
 ## 👨‍🦽‍➡️ grefico gant
-<img src="api/imagem/atividade 4 (1).jpeg" alt="grefico gant" width="600"/>
+<img src="api/foto/atividade 4 (1).jpeg" alt="grefico gant" width="600"/>
 
 ## Checklist de Testes – Projeto
 ## Testes Gerais
@@ -122,3 +122,4 @@ Verificar se o endpoint / retorna 200 e informações da API.
 - 4 Crie dentro da pasta ./api um arquivo chamado **.env** contendo as seguintes variáveis de ambiente:
 ```js
 DATABASE_URL="mysql://root@localhost:3306/escola?schema=public&timezone=UTC"
+
