@@ -42,17 +42,17 @@
 ## 📙 Diagrama do Projeto
 <img src="api/imagem/diagrama.jpeg" alt="Diagrama geral" width="600"/>
  
-## 📙 canva
+## 💀 canva
  <img src="api/imagem/atividade.jpeg" alt="canva" width="600"/>
 
-## 📙 triangulo de ferro
+## 👽 triangulo de ferro
 <img src="api/imagem/atividade 2.jpeg" alt="triangulo de ferro" width="600"/>
 
-## 📙 swot
+## 🫡 swot
 <img src="api/imagem/atividade 3.jpeg" alt="swot" width="600"/>
 
-## 📙 grefico gant
-<img src="api/imagem/atividade 4.jpeg" alt="grefico gant" width="600"/>
+## 👨‍🦽‍➡️ grefico gant
+<img src="api/fotos/atividade 4.jpeg" alt="grefico gant" width="600"/>
 
 ## Checklist de Testes – Projeto
 ## Testes Gerais
@@ -61,67 +61,57 @@ Verificar se o endpoint / retorna 200 e informações da API.
 
 ## Testes de Alunos
 
-[]Criar aluno (POST /alunos) → verificar campos obrigatórios e email único.
+[x]Criar aluno (POST /alunos) → verificar campos obrigatórios e email único.
 
-[]Listar todos alunos (GET /alunos) → deve retornar lista completa.
+[x]Listar todos alunos (GET /alunos) → deve retornar lista completa.
 
-[]Obter aluno por ID (GET /alunos/:id) → 200 se existir, 404 se não existir.
+[x]Obter aluno por ID (GET /alunos/:id) → 200 se existir, 404 se não existir.
 
 []Atualizar aluno (PUT/PATCH /alunos/:id) → alterar campos opcionais, mantendo email único.
 
-[]Remover aluno (DELETE /alunos/:id) → 200 ou 204.
+[x]Remover aluno (DELETE /alunos/:id) → 200 ou 204.
 
-[]Login do aluno (POST /alunos/login) → com credenciais válidas retorna token; inválidas retorna 400.
+[x]Login do aluno (POST /alunos/login) → com credenciais válidas retorna token; inválidas retorna 400.
 
-[]Validar token do aluno (GET /alunos/login) → 200 com token válido; 401 com token inválido/expirado.
+[x]Validar token do aluno (GET /alunos/login) → 200 com token válido; 401 com token inválido/expirado.
 
 ## Testes de Professores
 
-[]Criar professor (POST /professores) → verificar campos obrigatórios e email único.
+[x]Criar professor (POST /professores) → verificar campos obrigatórios e email único.
 
-[]Listar todos professores (GET /professores) → deve retornar lista completa.
+[x]Listar todos professores (GET /professores) → deve retornar lista completa.
 
-[]Obter professor por ID (GET /professores/:id) → 200 se existir, 404 se não existir.
+[x]Obter professor por ID (GET /professores/:id) → 200 se existir, 404 se não existir.
 
-[]Atualizar professor (PUT/PATCH /professores/:id) → alterar campos opcionais, mantendo email único.
+[x]Atualizar professor (PUT/PATCH /professores/:id) → alterar campos opcionais, mantendo email único.
 
-[]Remover professor (DELETE /professores/:id) → 200 ou 204.
+[x]Remover professor (DELETE /professores/:id) → 200 ou 204.
 
-## Testes de Telefones
 
-[]Criar telefone (POST /telefones) → verificar campos obrigatórios.
-
-[]Listar todos telefones (GET /telefones) → deve retornar lista completa.
-
-[]Obter telefone por ID (GET /telefones/:id) → 200 se existir, 404 se não existir.
-
-[]Atualizar telefone (PUT/PATCH /telefones/:id) → alterar campos opcionais.
-
-[]Remover telefone (DELETE /telefones/:id) → 200 ou 204.
 
 ## Testes de Turmas
 
-[]Criar turma (POST /turmas) → verificar campos obrigatórios.
+[x]Criar turma (POST /turmas) → verificar campos obrigatórios.
 
-[]Listar todas turmas (GET /turmas) → deve retornar lista completa.
+[x]Listar todas turmas (GET /turmas) → deve retornar lista completa.
 
-[]Obter turma por ID (GET /turmas/:id) → 200 se existir, 404 se não existir.
+[x]Obter turma por ID (GET /turmas/:id) → 200 se existir, 404 se não existir.
 
-[]Atualizar turma (PUT/PATCH /turmas/:id) → alterar campos opcionais.
+[x]Atualizar turma (PUT/PATCH /turmas/:id) → alterar campos opcionais.
 
-[]Remover turma (DELETE /turmas/:id) → 200 ou 204.
+[x]Remover turma (DELETE /turmas/:id) → 200 ou 204.
 
 ## Testes de Matrículas
 
-[]Criar matrícula (POST /matriculas) → verificar campos obrigatórios, relacionamentos válidos com aluno e turma.
+[x]Criar matrícula (POST /matriculas) → verificar campos obrigatórios, relacionamentos válidos com aluno e turma.
 
-[]Listar todas matrículas (GET /matriculas) → deve retornar lista completa.
+[x]Listar todas matrículas (GET /matriculas) → deve retornar lista completa.
 
-[]Obter matrícula por ID (GET /matriculas/:id) → 200 se existir, 404 se não existir.
+[x]Obter matrícula por ID (GET /matriculas/:id) → 200 se existir, 404 se não existir.
 
-[]Atualizar matrícula (PUT/PATCH /matriculas/:id) → alterar campos opcionais.
+[x]Atualizar matrícula (PUT/PATCH /matriculas/:id) → alterar campos opcionais.
 
-[]Remover matrícula (DELETE /matriculas/:id) → 200 ou 204.
+[x]Remover matrícula (DELETE /matriculas/:id) → 200 ou 204.
 
 
 
