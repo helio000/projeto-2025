@@ -51,6 +51,8 @@
 ## 📙 swot
 <img src="api/imagem/atividade 3.jpeg" alt="swot" width="600"/>
 
+## 📙 grefico gant
+<img src="api/imagem/atividade 4.jpeg" alt="grefico gant" width="600"/>
 
 ## Passo a passo para testar
 - 1 Clone este repositório
