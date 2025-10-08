@@ -49,3 +49,4 @@
 - 4 Crie dentro da pasta ./api um arquivo chamado **.env** contendo as seguintes variáveis de ambiente:
 ```js
 DATABASE_URL="mysql://root@localhost:3306/escola?schema=public&timezone=UTC"
+
