@@ -41,6 +41,16 @@
 
 ## 📙 Diagrama do Projeto
 <img src="api/imagem/diagrama.jpeg" alt="Diagrama geral" width="600"/>
+ 
+## 📙 canva
+ <img src="api/imagem/atividade.jpeg" alt="canva" width="600"/>
+
+## 📙 triangulo de ferro
+<img src="api/imagem/atividade 2.jpeg" alt="triangulo de ferro" width="600"/>
+
+## 📙 swot
+<img src="api/imagem/atividade 3.jpeg" alt="swot" width="600"/>
+
 
 ## Passo a passo para testar
 - 1 Clone este repositório
@@ -49,4 +59,3 @@
 - 4 Crie dentro da pasta ./api um arquivo chamado **.env** contendo as seguintes variáveis de ambiente:
 ```js
 DATABASE_URL="mysql://root@localhost:3306/escola?schema=public&timezone=UTC"
-
